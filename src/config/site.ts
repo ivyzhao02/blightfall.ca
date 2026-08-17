@@ -1,3 +1,6 @@
+import { blightFallGame } from '../content/projects';
+import { studioProfile } from '../content/studio';
+
 export type ReleaseState = 'prelaunch' | 'launch' | 'live';
 export type LinkPresentation = 'primary' | 'secondary';
 export type Platform = 'bluesky' | 'discord' | 'instagram' | 'roblox' | 'tiktok' | 'x' | 'youtube';
@@ -15,11 +18,12 @@ export interface OfficialLink {
 }
 
 export const siteConfig = {
-  name: 'BlightFall',
+  name: studioProfile.name,
   siteUrl: 'https://blightfall.ca',
-  description:
-    'BlightFall is an upcoming dark-fantasy Roblox RPG in pre-alpha development, combining exploration, party-based turn combat, and progression across lives.',
-  shortDescription: 'An upcoming dark-fantasy Roblox RPG in pre-alpha development.',
+  description: studioProfile.description,
+  shortDescription: `${studioProfile.name} is an ${studioProfile.publicDescriptor}.`,
+  flagshipProjectId: studioProfile.flagshipProjectId,
+  flagshipProjectSummary: blightFallGame.summary,
   socialImage: '/social/blightfall-social-preview.png',
   release: {
     state: 'prelaunch' as ReleaseState,

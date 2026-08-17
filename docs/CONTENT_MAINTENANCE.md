@@ -1,5 +1,16 @@
 # Content maintenance
 
+## Studio and project scope
+
+- `src/content/studio.ts` contains public-safe studio-level identity.
+- `src/content/projects.ts` contains game-specific records. BlightFall is currently the featured
+  project, but the model supports additional games.
+- `src/content/team.ts` and `src/content/news.ts` remain empty until approved records exist.
+
+Site-level metadata may use “independent game studio” or “development team.” Do not use a legal name,
+incorporation claim, address, founding history, or other legal-entity description without explicit
+approval. Game descriptions and implementation claims remain project-scoped and pre-alpha.
+
 ## Links
 
 All destinations are in `src/config/site.ts`. Each entry has a label, URL, platform, icon, order,
@@ -35,11 +46,23 @@ consent language, retention policy, and privacy-page update are approved.
 
 ## Copy and metadata
 
-- Keep `siteConfig.description` aligned with approved stable game pillars.
+- Keep `siteConfig.description` studio-level and legally neutral.
+- Keep gameplay copy in the relevant project record rather than the studio profile.
 - Page-specific titles and descriptions live in `src/pages/`.
 - Do not add a release date to structured data until approved.
+- Use `Organization` structured data for the studio site and `VideoGame` only on game-specific pages.
 - Keep social-image dimensions at 1200×630 and use approved assets only.
 - Update the privacy page before enabling analytics or any data collection.
+
+## Team, news, and contact
+
+Publish a team member only after their name, role, biography, image, and optional links have all been
+approved for public use. Keep unapproved records out of the repository rather than storing them as
+hidden drafts.
+
+Every news entry must declare whether it is studio-level or tied to a project. A contact form must
+remain absent until its destination, spam protection, retention, consent language, and privacy impact
+are decided. Request only the information genuinely needed to answer the inquiry.
 
 ## Approved asset replacements
 

@@ -3,6 +3,12 @@ import { expect, test } from '@playwright/test';
 
 const publicPages = ['/', '/links/', '/privacy/'];
 
+test('homepage uses the approved coming-soon headline', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('heading', { level: 1, name: 'Coming Soon' })).toBeVisible();
+  await expect(page.getByText('The world is still taking shape.')).toHaveCount(0);
+});
+
 for (const path of publicPages) {
   test(`${path} has no obvious accessibility violations`, async ({ page }) => {
     await page.goto(path);

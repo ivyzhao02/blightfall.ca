@@ -21,13 +21,11 @@ const canonicalUrl = new URL(canonicalPath, siteConfig.siteUrl);
 const socialImageUrl = new URL(siteConfig.socialImage, siteConfig.siteUrl);
 const structuredData = {
   '@context': 'https://schema.org',
-  '@type': 'VideoGame',
+  '@type': 'Organization',
   name: siteConfig.name,
   url: siteConfig.siteUrl,
   description: siteConfig.description,
-  genre: ['Role-playing game', 'Dark fantasy'],
-  gamePlatform: 'Roblox',
-  image: socialImageUrl.href,
+  logo: new URL('/assets/blightfall-icon.png', siteConfig.siteUrl).href,
   sameAs: getEnabledLinks().map((link) => link.url),
 };
 ---

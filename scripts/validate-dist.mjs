@@ -44,6 +44,19 @@ for (const [name, html, canonical] of expected) {
 
 assert(pages.notFound.includes('noindex, nofollow'), '404: noindex metadata');
 assert(pages.notFound.includes('This path fades into the dark.'), '404: custom content');
+assert(pages.home.includes('<h1 id="page-heading">Coming Soon</h1>'), 'home: approved headline');
+
+for (const [name, html] of Object.entries(pages)) {
+  assert(html.includes('"@type":"Organization"'), `${name}: studio structured data`);
+  assert(!html.includes('"@type":"Corporation"'), `${name}: no corporate legal claim`);
+  assert(!html.includes('"@type":"VideoGame"'), `${name}: no site-level game schema`);
+  assert(
+    !/\b(incorporated|corporation|limited liability company|LLC)\b/i.test(html),
+    `${name}: no unapproved legal status`,
+  );
+}
+
+assert(pages.home.includes('independent game studio'), 'home: studio-level metadata');
 
 for (const [name, html] of Object.entries(pages)) {
   assert(!/(datePublished|releaseDate)/i.test(html), `${name}: unapproved release date property`);

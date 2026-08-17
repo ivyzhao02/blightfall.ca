@@ -22,8 +22,17 @@ release.
 - Approved trailer/video thumbnail and embed preference
 - Any alternate horizontal/mobile logo lockups required after layout expansion
 - Press-kit download package and usage guidance
-- Public developer or studio description
+- Expanded approved studio and project descriptions
 - Approved public contact address or form route
+
+## Studio content requiring approval
+
+- Studio background, creative direction, values, and development approach
+- Founding history or dates
+- Any legal name or future incorporated status
+- Public team roster, roles, biographies, images, and links
+- Contact destination, form fields, spam protection, retention, and consent language
+- Studio announcements or devlog entries
 
 The current release uses the approved final BlightFall wordmark, experience icon, violet palette, and
 geometric background treatment. It does not require fabricated placeholder artwork or third-party
@@ -37,3 +46,5 @@ fonts.
 - Privacy-conscious analytics provider, if any
 - Redirect implementation method
 - Security-header policy after the host is selected
+- Timing and scope for the studio homepage, projects index, dedicated BlightFall game page, about,
+  team, news, and contact routes

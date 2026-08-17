@@ -13,6 +13,13 @@ deployment, DNS changes, new public claims, or use of internal production materi
 - Do not enable a link until its exact official URL has been confirmed.
 - Do not publish a release date, gameplay metric, player count, quote, biography, or implementation
   claim without explicit current approval.
+- Do not describe BlightFall as incorporated, a corporation, or another specific legal entity unless
+  that status is later confirmed and approved for publication.
+- Keep studio-level information distinct from game-specific claims.
+- Add a team member only after their public name, role, biography, image, and links are all approved.
+- Do not activate contact collection until its destination, spam protection, retention, consent, and
+  privacy implications are approved.
+- Do not request unnecessary personal information from visitors.
 - Preserve the existing domain’s email configuration in all deployment proposals.
 
 ## Development workflow

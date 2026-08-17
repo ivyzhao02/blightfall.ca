@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { getEnabledLinks, getPrimaryLink, officialLinks, siteConfig } from '../src/config/site';
+import { newsEntries } from '../src/content/news';
+import { blightFallGame, projects } from '../src/content/projects';
+import { studioProfile } from '../src/content/studio';
+import { teamMembers } from '../src/content/team';
 
 describe('public site configuration', () => {
   it('has unique link IDs and display orders', () => {
@@ -55,5 +59,29 @@ describe('public site configuration', () => {
       'x',
       'bluesky',
     ]);
+  });
+
+  it('separates the independent studio from its flagship game', () => {
+    expect(studioProfile).toMatchObject({
+      name: 'BlightFall',
+      publicDescriptor: 'independent game studio',
+      legalEntityName: null,
+      flagshipProjectId: 'blightfall-game',
+    });
+    expect(blightFallGame).toMatchObject({
+      name: 'BlightFall',
+      type: 'game',
+      status: 'prealpha',
+      featured: true,
+      platform: ['Roblox'],
+    });
+    expect(projects).toHaveLength(1);
+  });
+
+  it('does not publish unapproved team members or news entries', () => {
+    expect(teamMembers).toEqual([]);
+    expect(newsEntries).toEqual([]);
+    expect(teamMembers.every((member) => member.approvedForPublication)).toBe(true);
+    expect(newsEntries.every((entry) => entry.approvedForPublication)).toBe(true);
   });
 });

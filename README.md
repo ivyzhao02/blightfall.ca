@@ -1,7 +1,9 @@
 # BlightFall official website
 
 This repository contains the static-first official website for **BlightFall** at
-`https://blightfall.ca`. The initial release is a mobile-first pre-launch landing page and
+`https://blightfall.ca`. BlightFall is the intended name of the independent game studio and its
+current flagship Roblox game. The studio is not described as an incorporated company or other
+specific legal entity. The initial release remains a mobile-first pre-launch landing page and
 permanent social-bio link page.
 
 The repository is intentionally independent from the Roblox game code, internal production
@@ -22,7 +24,8 @@ project-owner approval.
 - GitHub Actions for checks only; there is no deployment workflow
 
 Astro was selected because it produces portable static files, keeps client JavaScript opt-in, and
-supports future Markdown news content without introducing a database or CMS.
+supports future Markdown news content without introducing a database or CMS. Studio, project, team,
+and news records are separate so another game can be added without restructuring the website.
 
 ## Local development
 
@@ -56,7 +59,8 @@ npx playwright install chromium
 ## Project structure
 
 ```text
-src/config/site.ts       Release state, analytics mode, and all public links
+src/config/site.ts       Site settings, release state, analytics mode, and public links
+src/content/             Separate studio, project, team, and news models
 src/components/          Shared link-hub UI and opt-in analytics integration
 src/pages/               Home, permanent links page, privacy page, and 404
 src/styles/global.css    Brand-aligned responsive design system
@@ -84,6 +88,8 @@ See [Content maintenance](docs/CONTENT_MAINTENANCE.md) for the full safe update 
 - Production hosting, custom-domain attachment, analytics, DNS, and GitHub Pages are not configured.
 - The existing domain email records must remain unchanged during any future deployment.
 - Only the confirmed Discord destination is currently enabled.
+- Studio-level metadata identifies BlightFall as an independent game studio; game-specific copy
+  remains scoped to the flagship pre-alpha Roblox project.
 
 See [Missing content](docs/MISSING_CONTENT.md), [Deployment](DEPLOYMENT.md), and
 [Roadmap](ROADMAP.md) for the remaining approved work.

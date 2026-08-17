@@ -1,5 +1,6 @@
 ---
 import { getEnabledLinks, getPrimaryLink, siteConfig } from '../config/site';
+import { blightFallGame } from '../content/projects';
 import Countdown from './Countdown.astro';
 import LinkButton from './LinkButton.astro';
 
@@ -12,7 +13,7 @@ const { release } = siteConfig;
 const releaseCopy = siteConfig.releaseCopy[release.state];
 const primaryLink = getPrimaryLink();
 const secondaryLinks = getEnabledLinks().filter((link) => link.id !== primaryLink.id);
-const heading = page === 'links' ? 'Official links' : 'The world is still taking shape.';
+const heading = page === 'links' ? 'Official links' : 'Coming Soon';
 ---
 
 <main id="main-content" class:list={['link-hub', `link-hub--${page}`]}>
@@ -29,7 +30,7 @@ const heading = page === 'links' ? 'Official links' : 'The world is still taking
     />
     <p class="eyebrow">{releaseCopy.eyebrow}</p>
     <h1 id="page-heading">{heading}</h1>
-    <p class="hero__description">{siteConfig.description}</p>
+    <p class="hero__description">{blightFallGame.description}</p>
     <p class="hero__message">{releaseCopy.message}</p>
 
     {

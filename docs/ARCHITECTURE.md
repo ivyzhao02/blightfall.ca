@@ -8,16 +8,16 @@ Astro with strict TypeScript produces portable static files, keeps client JavaSc
 later add Markdown news collections. A database, client framework, and CMS are unnecessary for the
 initial release.
 
-## ADR-002: One public configuration authority
+## ADR-002: One public link and release authority
 
 **Status:** accepted
 
 `src/config/site.ts` owns release state, primary-action selection, analytics mode, and public
 destinations. Both `/` and `/links/` render the shared `LinkHub` component from this data. The homepage
-can later expand while `/links/` remains stable.
+can expand while `/links/` remains stable.
 
-Unconfirmed links are retained as disabled configuration records with null URLs. This preserves
-priority and maintenance structure without generating broken or guessed buttons.
+Unconfirmed links are disabled records with null URLs. This preserves priority and maintenance
+structure without generating broken or guessed buttons.
 
 ## ADR-003: Build-time release safeguards
 
@@ -49,3 +49,38 @@ Analytics page views after approval and configuration. Provider activation requi
 
 The application emits ordinary static files. Host-specific redirects and headers are deferred until
 hosting is selected, preventing premature coupling and unreviewed production changes.
+
+## ADR-007: Studio-level website with project-scoped games
+
+**Status:** accepted
+
+BlightFall names both the independent development studio/team and its flagship Roblox game. The site
+is therefore organized around the studio, not permanently around one title. Existing game branding
+can serve as the initial studio identity without making the layout or data model single-project.
+
+Site-level metadata uses the broad Schema.org `Organization` type and the legally neutral descriptor
+“independent game studio.” This does not claim incorporation or a specific legal entity. Dedicated
+game pages may add `VideoGame` structured data from the relevant approved project record.
+
+## ADR-008: Separate studio, project, team, and news models
+
+**Status:** accepted
+
+`src/content/` separates:
+
+- `studio.ts` for public-safe studio identity
+- `projects.ts` for game-specific records
+- `team.ts` for individually approved public profiles
+- `news.ts` for explicitly studio- or project-scoped announcements
+
+Team and news collections start empty. Unapproved personal information and draft announcements stay
+outside the repository rather than being hidden in source. Additional games can be added as project
+records before routes or navigation are expanded.
+
+## ADR-009: Contact collection remains absent by default
+
+**Status:** accepted
+
+A contact form is not a harmless placeholder. It will not be implemented until the destination, spam
+protection, data retention, consent language, privacy disclosure, and minimum required fields are
+approved. The form must not request unnecessary personal information.
