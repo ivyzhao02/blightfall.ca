@@ -30,6 +30,14 @@ describe('public site configuration', () => {
     });
   });
 
+  it('publishes the approved public social profiles', () => {
+    expect(
+      getEnabledLinks()
+        .filter((link) => link.id !== 'discord')
+        .map((link) => link.id),
+    ).toEqual(['youtube', 'tiktok', 'instagram', 'x', 'bluesky']);
+  });
+
   it('fails safely when launch is selected before the play URL is approved', () => {
     expect(() => getPrimaryLink('launch')).toThrow(/requires an enabled, confirmed URL/);
     expect(() => getPrimaryLink('live')).toThrow(/requires an enabled, confirmed URL/);

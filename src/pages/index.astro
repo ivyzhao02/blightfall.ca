@@ -1,12 +1,116 @@
 ---
-import LinkHub from '../components/LinkHub.astro';
+import LinkButton from '../components/LinkButton.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPrimaryLink } from '../config/site';
+import { blightFallGame } from '../content/projects';
+
+const primaryLink = getPrimaryLink();
 ---
 
 <BaseLayout
-  title="BlightFall — Official Site"
-  description="The official website of BlightFall, an independent game studio and development team creating the flagship Roblox RPG BlightFall."
+  title="BlightFall — Independent Game Studio"
+  description="BlightFall is an independent game studio and development team. Discover its flagship dark-fantasy Roblox RPG, currently in pre-alpha development."
   canonicalPath="/"
 >
-  <LinkHub page="home" />
+  <main id="main-content" class="home-page">
+    <section class="studio-hero" aria-labelledby="page-heading">
+      <div class="studio-hero__content">
+        <p class="eyebrow">Independent game studio</p>
+        <h1 id="page-heading">Coming Soon</h1>
+        <p class="studio-hero__lead">
+          BlightFall is an independent game studio and development team. Our current flagship
+          project is a dark-fantasy Roblox RPG also named BlightFall.
+        </p>
+        <div class="studio-hero__actions">
+          <LinkButton link={primaryLink} variant="primary" />
+          <a class="text-action" href="/projects/blightfall/">
+            Explore the game
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <a
+        class="flagship-visual"
+        href="/projects/blightfall/"
+        aria-label="Explore BlightFall, our flagship project"
+      >
+        <img
+          class="flagship-visual__backdrop"
+          src="/assets/blightfall-backdrop.webp"
+          width="1600"
+          height="900"
+          alt=""
+        />
+        <div class="flagship-visual__shade"></div>
+        <div class="flagship-visual__topline">
+          <span>Flagship project</span>
+          <span>Pre-alpha</span>
+        </div>
+        <img
+          class="flagship-visual__wordmark"
+          src="/assets/blightfall-wordmark.png"
+          width="1751"
+          height="446"
+          alt="BlightFall"
+        />
+        <p>{blightFallGame.summary}</p>
+      </a>
+    </section>
+
+    <section class="studio-intro section-block" aria-labelledby="studio-heading">
+      <div class="section-heading">
+        <p class="eyebrow">The studio</p>
+        <h2 id="studio-heading">One identity. Room to build more worlds.</h2>
+      </div>
+      <div class="studio-intro__body">
+        <p>
+          BlightFall is both the name of our studio and our current flagship game. The website is
+          built around the studio so future projects can stand alongside the world currently in
+          development.
+        </p>
+        <a class="inline-link" href="/studio/">
+          About BlightFall studio <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="project-feature section-block" aria-labelledby="project-heading">
+      <div class="project-feature__media">
+        <span class="project-feature__index" aria-hidden="true">01</span>
+        <img src="/assets/blightfall-icon.png" width="512" height="512" alt="" />
+      </div>
+      <div class="project-feature__content">
+        <p class="eyebrow">Current project · Roblox</p>
+        <h2 id="project-heading">BlightFall</h2>
+        <p>{blightFallGame.description}</p>
+        <dl class="project-facts">
+          <div><dt>Status</dt><dd>Pre-alpha development</dd></div>
+          <div><dt>Platform</dt><dd>Roblox</dd></div>
+          <div><dt>Availability</dt><dd>Not publicly released</dd></div>
+        </dl>
+        <a class="text-action" href="/projects/blightfall/">
+          View project overview <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="dispatch-section section-block" aria-labelledby="dispatch-heading">
+      <div>
+        <p class="eyebrow">Development</p>
+        <h2 id="dispatch-heading">Follow the work as it takes shape.</h2>
+      </div>
+      <div class="dispatch-section__actions">
+        <p>
+          Studio announcements and project updates will be collected here as they are published.
+        </p>
+        <a class="inline-link" href="/news/">
+          Development news <span aria-hidden="true">→</span>
+        </a>
+        <a class="inline-link" href="/links/">
+          All official channels <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+  </main>
 </BaseLayout>

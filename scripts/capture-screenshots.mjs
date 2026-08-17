@@ -7,6 +7,7 @@ const baseURL = 'http://127.0.0.1:4321';
 const output = new URL('../docs/screenshots/', import.meta.url);
 await mkdir(output, { recursive: true });
 
+const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 let server;
 
 async function waitForServer() {
@@ -27,9 +28,8 @@ try {
     const existing = await fetch(baseURL);
     if (!existing.ok) throw new Error('Preview server is not ready.');
   } catch {
-    const astroCli = fileURLToPath(new URL('../node_modules/astro/astro.js', import.meta.url));
-    server = spawn(process.execPath, [astroCli, 'preview', '--host', '127.0.0.1'], {
-      cwd: fileURLToPath(new URL('../', import.meta.url)),
+    server = spawn(process.execPath, ['scripts/serve-dist.mjs'], {
+      cwd: projectRoot,
       stdio: 'ignore',
     });
   }

@@ -1,0 +1,83 @@
+---
+import LinkButton from '../../components/LinkButton.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPrimaryLink, siteConfig } from '../../config/site';
+import { blightFallGame } from '../../content/projects';
+
+const primaryLink = getPrimaryLink();
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoGame',
+  name: blightFallGame.name,
+  url: new URL('/projects/blightfall/', siteConfig.siteUrl).href,
+  description: blightFallGame.description,
+  gamePlatform: blightFallGame.platform,
+  applicationCategory: 'Game',
+  publisher: {
+    '@type': 'Organization',
+    name: siteConfig.name,
+    url: siteConfig.siteUrl,
+  },
+};
+---
+
+<BaseLayout
+  title="BlightFall — Flagship Roblox RPG"
+  description={blightFallGame.description}
+  canonicalPath="/projects/blightfall/"
+  structuredData={structuredData}
+>
+  <main id="main-content" class="game-page">
+    <header class="game-hero">
+      <img
+        class="game-hero__backdrop"
+        src="/assets/blightfall-backdrop.webp"
+        width="1600"
+        height="900"
+        alt=""
+      />
+      <div class="game-hero__shade"></div>
+      <div class="game-hero__content">
+        <p class="eyebrow">A BlightFall studio project · Pre-alpha</p>
+        <h1 class="game-hero__title">
+          <img src="/assets/blightfall-wordmark.png" width="1751" height="446" alt="BlightFall" />
+        </h1>
+        <p>{blightFallGame.description}</p>
+        <div class="game-hero__action"><LinkButton link={primaryLink} variant="primary" /></div>
+      </div>
+    </header>
+
+    <section class="game-overview section-block" aria-labelledby="overview-heading">
+      <div class="section-heading">
+        <p class="eyebrow">Overview</p>
+        <h2 id="overview-heading">A dark-fantasy RPG in development for Roblox.</h2>
+      </div>
+      <div class="prose-column">
+        <p>{blightFallGame.description}</p>
+        <p>
+          BlightFall is not publicly released. Gameplay details, media, and availability information
+          will expand here as material is approved for publication.
+        </p>
+      </div>
+    </section>
+
+    <section class="game-status" aria-label="Project status">
+      <div><span>Development stage</span><strong>Pre-alpha</strong></div>
+      <div><span>Platform</span><strong>Roblox</strong></div>
+      <div><span>Public release</span><strong>Coming soon</strong></div>
+    </section>
+
+    <section class="community-banner section-block" aria-labelledby="community-heading">
+      <div>
+        <p class="eyebrow">Community</p>
+        <h2 id="community-heading">Follow BlightFall’s development.</h2>
+      </div>
+      <div>
+        <p>Join the official Discord or find every verified BlightFall channel in one place.</p>
+        <a class="inline-link" href="/links/">
+          View official links <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

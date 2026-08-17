@@ -7,14 +7,8 @@ The site intentionally omits every unconfirmed destination instead of publishing
 - Roblox group or community URL
 - Public Roblox game URL for the future “Play BlightFall” action
 - Current approved gameplay or trailer URL
-- YouTube channel URL
-- TikTok profile URL
-- Instagram profile URL
-- X profile URL
-- Bluesky profile URL
 
-The Discord invite `https://discord.gg/blightfall` is the only enabled destination in the initial
-release.
+The Discord, YouTube, TikTok, Instagram, X, and Bluesky destinations are confirmed and enabled.
 
 ## Assets requiring future approval
 
@@ -40,11 +34,8 @@ fonts.
 
 ## Decisions still required
 
-- Static hosting provider
-- Preview and production access owners
-- Production custom-domain timing
+- Preview-deployment approach, if needed beyond local and pull-request validation
 - Privacy-conscious analytics provider, if any
 - Redirect implementation method
-- Security-header policy after the host is selected
-- Timing and scope for the studio homepage, projects index, dedicated BlightFall game page, about,
-  team, news, and contact routes
+- Security-header policy within GitHub Pages limitations or after a future host change
+- Approved team profiles and the timing for publishing a dedicated team route

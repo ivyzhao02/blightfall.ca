@@ -6,15 +6,19 @@ incorporation, approve a legal entity, or authorize public facts that have not b
 
 ## Phase 0 — Verified pre-launch link hub
 
-- Retain `/links/` as the permanent official-link destination.
-- Confirm and enable the Roblox group, trailer/gameplay, YouTube, TikTok, Instagram, X, and Bluesky
-  destinations.
-- Replace or expand imagery only with approved production assets.
-- Select a static host and configure preview deployments.
+- Retain `/links/` as the permanent official-link destination. **Implemented.**
+- YouTube, TikTok, Instagram, X, and Bluesky are confirmed and enabled. Roblox group/game and
+  trailer/gameplay destinations remain pending confirmation.
+- Continue using only approved production assets. **Implemented for the current release.**
+- GitHub Pages is the current static host with automated production deployment from `main`.
 - Approve a privacy-conscious analytics provider and update the privacy page before activation.
-- Complete domain and HTTPS setup while preserving all existing mail records.
+- The custom domain and HTTPS endpoint are active; preserve all existing mail records in any future
+  DNS work.
 
 ## Phase 1 — Studio information architecture
+
+The foundational home, studio, project index, flagship project, news, contact, and links routes are
+implemented. Future work in this phase is approved content expansion rather than structural rebuild.
 
 - Home: introduce the independent BlightFall studio and feature the flagship game.
 - Projects/Games: create a scalable project index, initially containing the BlightFall game.

@@ -84,3 +84,15 @@ records before routes or navigation are expanded.
 A contact form is not a harmless placeholder. It will not be implemented until the destination, spam
 protection, data retention, consent language, privacy disclosure, and minimum required fields are
 approved. The form must not request unnecessary personal information.
+
+## ADR-010: Studio homepage and permanent link utility have different layouts
+
+**Status:** accepted
+
+The homepage uses a wide editorial composition with global navigation, a flagship-project feature,
+and studio-level sections. `/links/` remains a compact, durable social-bio destination backed by the
+same central configuration. This prevents the public website from reading as a single profile card
+while keeping the link route fast and easy to maintain.
+
+Public navigation exposes only useful routes with approved copy. Team data remains modeled but a
+team route is deferred until approved profiles exist, avoiding an empty or speculative public page.

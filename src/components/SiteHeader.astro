@@ -1,0 +1,29 @@
+---
+const pathname = Astro.url.pathname;
+const navigation = [
+  { label: 'Studio', href: '/studio/' },
+  { label: 'Projects', href: '/projects/' },
+  { label: 'News', href: '/news/' },
+  { label: 'Official links', href: '/links/' },
+];
+
+function isCurrent(href: string) {
+  return href === '/' ? pathname === href : pathname.startsWith(href);
+}
+---
+
+<header class="site-header">
+  <a class="site-brand" href="/" aria-label="BlightFall home">
+    <img src="/assets/blightfall-icon.png" width="512" height="512" alt="" />
+    <span>BlightFall</span>
+  </a>
+  <nav class="primary-navigation" aria-label="Primary navigation">
+    {
+      navigation.map((item) => (
+        <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+</header>

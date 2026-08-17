@@ -12,7 +12,7 @@ export const projects: Project[] = [
     summary: 'An upcoming dark-fantasy Roblox RPG in pre-alpha development.',
     description:
       'BlightFall is an upcoming dark-fantasy Roblox RPG in pre-alpha development, combining exploration, party-based turn combat, and progression across lives.',
-    publicPageEnabled: false,
+    publicPageEnabled: true,
   },
 ];
 

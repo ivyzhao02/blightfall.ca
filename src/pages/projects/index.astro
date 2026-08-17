@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projects } from '../../content/projects';
+
+const publicProjects = projects.filter((project) => project.publicPageEnabled);
+---
+
+<BaseLayout
+  title="Projects — BlightFall"
+  description="Explore projects from the independent BlightFall game studio, beginning with its flagship Roblox RPG."
+  canonicalPath="/projects/"
+>
+  <main id="main-content" class="editorial-page projects-page">
+    <header class="editorial-hero">
+      <p class="eyebrow">Projects</p>
+      <h1>Worlds in development.</h1>
+      <p>BlightFall’s current and future games live here as distinct studio projects.</p>
+    </header>
+
+    <section class="project-list" aria-label="Public projects">
+      {
+        publicProjects.map((project, index) => (
+          <a class="project-listing" href={`/projects/${project.slug}/`}>
+            <div class="project-listing__visual">
+              <img src="/assets/blightfall-backdrop.webp" width="1600" height="900" alt="" />
+              <span>{String(index + 1).padStart(2, '0')}</span>
+            </div>
+            <div class="project-listing__content">
+              <p class="eyebrow">
+                {project.platform.join(' · ')} ·{' '}
+                {project.status === 'prealpha' ? 'Pre-alpha' : project.status}
+              </p>
+              <h2>{project.name}</h2>
+              <p>{project.summary}</p>
+              <span class="inline-link">
+                Project overview <span aria-hidden="true">→</span>
+              </span>
+            </div>
+          </a>
+        ))
+      }
+    </section>
+  </main>
+</BaseLayout>

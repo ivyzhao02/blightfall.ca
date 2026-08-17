@@ -1,7 +1,16 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
-const publicPages = ['/', '/links/', '/privacy/'];
+const publicPages = [
+  '/',
+  '/studio/',
+  '/projects/',
+  '/projects/blightfall/',
+  '/news/',
+  '/contact/',
+  '/links/',
+  '/privacy/',
+];
 
 test('homepage uses the approved coming-soon headline', async ({ page }) => {
   await page.goto('/');
@@ -50,12 +59,28 @@ test('reduced motion removes meaningful transition duration', async ({ page }) =
   expect(transitionSeconds).toBeLessThanOrEqual(0.001);
 });
 
-test('unconfirmed destinations are omitted', async ({ page }) => {
+test('approved social destinations are published and unconfirmed destinations are omitted', async ({
+  page,
+}) => {
   await page.goto('/links/');
   await expect(page.getByRole('link', { name: 'Join the Discord' })).toHaveCount(1);
-  await expect(page.getByRole('link', { name: 'YouTube' })).toHaveCount(0);
-  await expect(page.getByRole('link', { name: 'TikTok' })).toHaveCount(0);
-  await expect(page.getByRole('link', { name: 'Instagram' })).toHaveCount(0);
-  await expect(page.getByRole('link', { name: 'X' })).toHaveCount(0);
-  await expect(page.getByRole('link', { name: 'Bluesky' })).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'YouTube' })).toHaveAttribute(
+    'href',
+    'https://www.youtube.com/@BlightFallRoblox',
+  );
+  await expect(page.getByRole('link', { name: 'TikTok' })).toHaveCount(1);
+  await expect(page.getByRole('link', { name: 'Instagram' })).toHaveCount(1);
+  await expect(page.getByRole('link', { name: 'X', exact: true })).toHaveCount(1);
+  await expect(page.getByRole('link', { name: 'Bluesky' })).toHaveCount(1);
+  await expect(page.getByRole('link', { name: /Roblox/i })).toHaveCount(0);
+  await expect(page.getByRole('link', { name: /latest gameplay/i })).toHaveCount(0);
+});
+
+test('studio navigation exposes the public site structure', async ({ page }) => {
+  await page.goto('/');
+  const navigation = page.getByRole('navigation', { name: 'Primary navigation' });
+  await expect(navigation.getByRole('link', { name: 'Studio' })).toBeVisible();
+  await expect(navigation.getByRole('link', { name: 'Projects' })).toBeVisible();
+  await expect(navigation.getByRole('link', { name: 'News' })).toBeVisible();
+  await expect(navigation.getByRole('link', { name: 'Official links' })).toBeVisible();
 });

@@ -1,6 +1,7 @@
 ---
 import Analytics from '../components/Analytics.astro';
 import Footer from '../components/Footer.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 import { getEnabledLinks, siteConfig } from '../config/site';
 import '../styles/global.css';
 
@@ -9,6 +10,7 @@ interface Props {
   description?: string;
   canonicalPath?: string;
   noindex?: boolean;
+  structuredData?: Record<string, unknown>;
 }
 
 const {
@@ -16,6 +18,7 @@ const {
   description = siteConfig.description,
   canonicalPath = Astro.url.pathname,
   noindex = false,
+  structuredData: pageStructuredData,
 } = Astro.props;
 const canonicalUrl = new URL(canonicalPath, siteConfig.siteUrl);
 const socialImageUrl = new URL(siteConfig.socialImage, siteConfig.siteUrl);
@@ -28,6 +31,9 @@ const structuredData = {
   logo: new URL('/assets/blightfall-icon.png', siteConfig.siteUrl).href,
   sameAs: getEnabledLinks().map((link) => link.url),
 };
+const structuredDataGraph = pageStructuredData
+  ? [structuredData, pageStructuredData]
+  : [structuredData];
 ---
 
 <!doctype html>
@@ -62,13 +68,14 @@ const structuredData = {
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredDataGraph)} />
     <title>{title}</title>
     <Analytics />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="site-shell">
+      <SiteHeader />
       <slot />
       <Footer />
     </div>

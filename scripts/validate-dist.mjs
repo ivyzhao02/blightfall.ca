@@ -16,6 +16,11 @@ async function readDist(path) {
 
 const pages = {
   home: await readDist('index.html'),
+  studio: await readDist('studio/index.html'),
+  projects: await readDist('projects/index.html'),
+  blightfall: await readDist('projects/blightfall/index.html'),
+  news: await readDist('news/index.html'),
+  contact: await readDist('contact/index.html'),
   links: await readDist('links/index.html'),
   privacy: await readDist('privacy/index.html'),
   notFound: await readDist('404.html'),
@@ -23,6 +28,11 @@ const pages = {
 
 const expected = [
   ['home', pages.home, 'https://blightfall.ca/'],
+  ['studio', pages.studio, 'https://blightfall.ca/studio/'],
+  ['projects', pages.projects, 'https://blightfall.ca/projects/'],
+  ['blightfall', pages.blightfall, 'https://blightfall.ca/projects/blightfall/'],
+  ['news', pages.news, 'https://blightfall.ca/news/'],
+  ['contact', pages.contact, 'https://blightfall.ca/contact/'],
   ['links', pages.links, 'https://blightfall.ca/links/'],
   ['privacy', pages.privacy, 'https://blightfall.ca/privacy/'],
 ];
@@ -49,7 +59,11 @@ assert(pages.home.includes('<h1 id="page-heading">Coming Soon</h1>'), 'home: app
 for (const [name, html] of Object.entries(pages)) {
   assert(html.includes('"@type":"Organization"'), `${name}: studio structured data`);
   assert(!html.includes('"@type":"Corporation"'), `${name}: no corporate legal claim`);
-  assert(!html.includes('"@type":"VideoGame"'), `${name}: no site-level game schema`);
+  if (name === 'blightfall') {
+    assert(html.includes('"@type":"VideoGame"'), `${name}: game structured data`);
+  } else {
+    assert(!html.includes('"@type":"VideoGame"'), `${name}: no site-level game schema`);
+  }
   assert(
     !/\b(incorporated|corporation|limited liability company|LLC)\b/i.test(html),
     `${name}: no unapproved legal status`,
@@ -75,7 +89,14 @@ const enabledExternalAnchors = [
 ].map((match) => match[1]);
 assert(
   JSON.stringify([...new Set(enabledExternalAnchors)]) ===
-    JSON.stringify(['https://discord.gg/blightfall']),
+    JSON.stringify([
+      'https://discord.gg/blightfall',
+      'https://www.youtube.com/@BlightFallRoblox',
+      'https://www.tiktok.com/@blightfallroblox',
+      'https://www.instagram.com/blightfallroblox/',
+      'https://x.com/BlightFallRblx',
+      'https://bsky.app/profile/blightfallroblox.bsky.social',
+    ]),
   'links: only confirmed external destinations may render',
 );
 
@@ -89,6 +110,11 @@ assert(
 const sitemap = await readDist('sitemap-0.xml');
 for (const url of [
   'https://blightfall.ca/',
+  'https://blightfall.ca/studio/',
+  'https://blightfall.ca/projects/',
+  'https://blightfall.ca/projects/blightfall/',
+  'https://blightfall.ca/news/',
+  'https://blightfall.ca/contact/',
   'https://blightfall.ca/links/',
   'https://blightfall.ca/privacy/',
 ]) {

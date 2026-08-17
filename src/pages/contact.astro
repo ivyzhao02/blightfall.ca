@@ -1,0 +1,32 @@
+---
+import LinkButton from '../components/LinkButton.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEnabledLinks } from '../config/site';
+
+const publicLinks = getEnabledLinks();
+---
+
+<BaseLayout
+  title="Contact — BlightFall"
+  description="Official ways to connect with the independent BlightFall game studio and community."
+  canonicalPath="/contact/"
+>
+  <main id="main-content" class="editorial-page contact-page">
+    <header class="editorial-hero">
+      <p class="eyebrow">Contact</p>
+      <h1>Connect through official channels.</h1>
+      <p>
+        A public contact address and contact form are not active. For now, use the official
+        BlightFall community and social destinations below.
+      </p>
+    </header>
+
+    <section class="contact-links" aria-label="Official BlightFall destinations">
+      {
+        publicLinks.map((link) => (
+          <LinkButton link={link} variant={link.id === 'discord' ? 'primary' : 'secondary'} />
+        ))
+      }
+    </section>
+  </main>
+</BaseLayout>

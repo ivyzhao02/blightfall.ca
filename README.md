@@ -3,8 +3,8 @@
 This repository contains the static-first official website for **BlightFall** at
 `https://blightfall.ca`. BlightFall is the intended name of the independent game studio and its
 current flagship Roblox game. The studio is not described as an incorporated company or other
-specific legal entity. The initial release remains a mobile-first pre-launch landing page and
-permanent social-bio link page.
+specific legal entity. The current release includes a studio homepage, scalable project area,
+dedicated flagship-game page, news and contact foundations, and a permanent social-bio link page.
 
 The repository is intentionally independent from the Roblox game code, internal production
 systems, private calendars, and personal websites. It contains only public-site code, approved
@@ -21,7 +21,7 @@ project-owner approval.
 - Vitest for configuration tests
 - Playwright and axe-core for browser and accessibility checks
 - ESLint and Prettier for code quality
-- GitHub Actions for checks only; there is no deployment workflow
+- GitHub Actions for validation and deployment to GitHub Pages
 
 Astro was selected because it produces portable static files, keeps client JavaScript opt-in, and
 supports future Markdown news content without introducing a database or CMS. Studio, project, team,
@@ -61,8 +61,8 @@ npx playwright install chromium
 ```text
 src/config/site.ts       Site settings, release state, analytics mode, and public links
 src/content/             Separate studio, project, team, and news models
-src/components/          Shared link-hub UI and opt-in analytics integration
-src/pages/               Home, permanent links page, privacy page, and 404
+src/components/          Shared navigation, footer, link UI, and opt-in analytics integration
+src/pages/               Studio home, projects, news, contact, links, privacy, and 404
 src/styles/global.css    Brand-aligned responsive design system
 public/                  Approved web assets, icons, robots, and manifest
 tests/                   Configuration and browser validation
@@ -84,10 +84,11 @@ See [Content maintenance](docs/CONTENT_MAINTENANCE.md) for the full safe update 
 
 ## Current status
 
-- Canonical domain is configured as `https://blightfall.ca` for generated metadata only.
-- Production hosting, custom-domain attachment, analytics, DNS, and GitHub Pages are not configured.
-- The existing domain email records must remain unchanged during any future deployment.
-- Only the confirmed Discord destination is currently enabled.
+- The site is deployed to GitHub Pages at `https://blightfall.ca` from pushes to `main`.
+- Domain verification, apex DNS, and the `www` redirect are configured without changing Zoho mail.
+- Analytics remains disabled and the site sets no analytics cookies.
+- Discord, YouTube, TikTok, Instagram, X, and Bluesky are confirmed and enabled.
+- Roblox group/game and current trailer destinations remain disabled until confirmed.
 - Studio-level metadata identifies BlightFall as an independent game studio; game-specific copy
   remains scoped to the flagship pre-alpha Roblox project.
 

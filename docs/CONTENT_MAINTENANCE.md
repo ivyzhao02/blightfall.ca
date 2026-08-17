@@ -6,6 +6,8 @@
 - `src/content/projects.ts` contains game-specific records. BlightFall is currently the featured
   project, but the model supports additional games.
 - `src/content/team.ts` and `src/content/news.ts` remain empty until approved records exist.
+- `src/pages/projects/` renders the project index and individual public project pages.
+- `src/pages/studio.astro`, `news.astro`, and `contact.astro` provide the studio-level routes.
 
 Site-level metadata may use “independent game studio” or “development team.” Do not use a legal name,
 incorporation claim, address, founding history, or other legal-entity description without explicit
@@ -22,7 +24,7 @@ To add or update a destination:
 2. Add the URL to the existing entry.
 3. Set `enabled: true` only when it is ready for public use.
 4. Run `npm run check`, `npm run check:links`, and `npm run test:e2e`.
-5. Review `/` and `/links/` at mobile and desktop widths.
+5. Review `/`, `/links/`, `/contact/`, and any affected project page at mobile and desktop widths.
 
 Disabled or URL-less entries are deliberately omitted from the rendered site.
 

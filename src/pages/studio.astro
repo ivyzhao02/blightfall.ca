@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { studioProfile } from '../content/studio';
+---
+
+<BaseLayout
+  title="Studio — BlightFall"
+  description="About BlightFall, an independent game studio and development team creating its flagship Roblox RPG."
+  canonicalPath="/studio/"
+>
+  <main id="main-content" class="editorial-page">
+    <header class="editorial-hero">
+      <p class="eyebrow">About the studio</p>
+      <h1>Building worlds under one name.</h1>
+      <p>{studioProfile.description}</p>
+    </header>
+
+    <section class="editorial-grid" aria-labelledby="identity-heading">
+      <div class="section-heading">
+        <p class="eyebrow">Studio identity</p>
+        <h2 id="identity-heading">BlightFall is the studio and the flagship project.</h2>
+      </div>
+      <div class="prose-column">
+        <p>
+          The shared name reflects the project that currently defines the studio’s public identity.
+          The studio structure is intentionally broader than a single title, leaving space for
+          future games without changing the role of this website.
+        </p>
+        <p>
+          The public studio description remains intentionally simple: an independent game studio and
+          development team focused on its current flagship project.
+        </p>
+      </div>
+    </section>
+
+    <section class="editorial-grid editorial-grid--bordered" aria-labelledby="current-heading">
+      <div class="section-heading">
+        <p class="eyebrow">Current focus</p>
+        <h2 id="current-heading">The first BlightFall project.</h2>
+      </div>
+      <div class="prose-column">
+        <p>
+          The studio’s current flagship project is BlightFall, an upcoming dark-fantasy Roblox RPG
+          in pre-alpha development.
+        </p>
+        <a class="text-action" href="/projects/blightfall/">
+          Explore the project <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
