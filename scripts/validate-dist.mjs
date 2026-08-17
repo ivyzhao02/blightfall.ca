@@ -92,6 +92,13 @@ assert(
 );
 assert(!pages.contact.includes('<form'), 'contact: collection form remains disabled');
 assert(!pages.news.includes('<iframe'), 'news: no third-party Discord feed');
+assert(
+  pages.news.includes(
+    'https://discord.com/api/guilds/1511511102351998996/widget.png?style=banner2',
+  ),
+  'news: approved Discord server status widget',
+);
+assert(pages.news.includes('referrerpolicy="no-referrer"'), 'news: widget referrer policy');
 
 for (const [name, html] of Object.entries(pages)) {
   assert(!/(datePublished|releaseDate)/i.test(html), `${name}: unapproved release date property`);

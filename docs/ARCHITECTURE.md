@@ -113,7 +113,12 @@ retention, consent language, and privacy impact are approved.
 The news page identifies the official BlightFall Discord as the current source and links visitors to
 it. Discord's official server widget does not expose channel messages, while reading announcements
 through the API requires an authenticated application and channel permissions. The public site will
-not add an unapproved bot, synchronization process, credential, or third-party tracking widget.
+not add an unapproved bot, synchronization process, or credential.
+
+The News page uses Discord's unauthenticated PNG widget endpoint to display the server icon, name,
+and live online count. It deliberately avoids the iframe member list, requires no client-side
+JavaScript, sends no site referrer, and is disclosed on the Privacy page. The widget is an invitation
+to the community, not an announcement feed or source of website content.
 
 A future website archive can use approved, intentionally published news records, or a separately
 reviewed synchronization design with strict public-channel and data boundaries.

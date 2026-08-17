@@ -58,6 +58,10 @@ export const siteConfig = {
     plausibleDomain: null as string | null,
     cloudflareToken: null as string | null,
   },
+  discordWidget: {
+    guildId: '1511511102351998996',
+    imageStyle: 'banner2' as const,
+  },
 } as const;
 
 /**

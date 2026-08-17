@@ -51,6 +51,13 @@ describe('public site configuration', () => {
     expect(siteConfig.analytics.provider).toBe('none');
   });
 
+  it('uses the approved public Discord server widget', () => {
+    expect(siteConfig.discordWidget).toEqual({
+      guildId: '1511511102351998996',
+      imageStyle: 'banner2',
+    });
+  });
+
   it('retains the requested public-link priority in configuration', () => {
     expect(
       officialLinks

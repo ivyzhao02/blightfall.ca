@@ -90,6 +90,8 @@ See [Content maintenance](docs/CONTENT_MAINTENANCE.md) for the full safe update 
 - Discord, YouTube, TikTok, Instagram, X, and Bluesky are confirmed and enabled.
 - The news page directs visitors to the official Discord announcement source without embedding or
   synchronizing messages.
+- An official live Discord status image on the News page provides the server name and online count
+  without exposing its member list or adding client-side JavaScript.
 - Categorized general, business, press, support, and privacy email routes are published; no hosted
   contact form or submission storage is active.
 - Roblox group/game and current trailer destinations remain disabled until confirmed.

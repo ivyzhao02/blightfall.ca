@@ -130,9 +130,11 @@ test('news identifies Discord as the current source without embedding a third-pa
   await expect(
     page.getByRole('heading', { name: 'Follow game announcements in Discord.' }),
   ).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Join the Discord' })).toHaveAttribute(
-    'href',
-    'https://discord.gg/blightfall',
+  const widget = page.getByRole('link', { name: 'Join the official BlightFall Discord server' });
+  await expect(widget).toHaveAttribute('href', 'https://discord.gg/blightfall');
+  await expect(widget.locator('img')).toHaveAttribute(
+    'src',
+    'https://discord.com/api/guilds/1511511102351998996/widget.png?style=banner2',
   );
   await expect(page.locator('iframe')).toHaveCount(0);
 });

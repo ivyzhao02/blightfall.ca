@@ -1,13 +1,9 @@
 ---
-import LinkButton from '../components/LinkButton.astro';
+import DiscordServerWidget from '../components/DiscordServerWidget.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getEnabledLinks } from '../config/site';
 import { newsEntries } from '../content/news';
 
 const publicNews = newsEntries.filter((entry) => entry.approvedForPublication);
-const discordLink = getEnabledLinks().find((link) => link.id === 'discord');
-
-if (!discordLink) throw new Error('The news page requires the official Discord destination.');
 ---
 
 <BaseLayout
@@ -32,7 +28,7 @@ if (!discordLink) throw new Error('The news page requires the official Discord d
           Join the official server to read current announcements at their source and follow
           BlightFall’s development as new updates are posted.
         </p>
-        <LinkButton link={discordLink} variant="primary" />
+        <DiscordServerWidget />
       </div>
     </section>
 

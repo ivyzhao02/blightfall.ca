@@ -1,0 +1,33 @@
+---
+import { getEnabledLinks, siteConfig } from '../config/site';
+
+const discordLink = getEnabledLinks().find((link) => link.id === 'discord');
+if (!discordLink?.url) throw new Error('The Discord server widget requires the official invite.');
+
+const widgetImage = `https://discord.com/api/guilds/${siteConfig.discordWidget.guildId}/widget.png?style=${siteConfig.discordWidget.imageStyle}`;
+---
+
+<a
+  class="discord-server-card"
+  href={discordLink.url}
+  data-analytics-id="join-discord-widget"
+  rel="me"
+  aria-label="Join the official BlightFall Discord server"
+>
+  <span class="discord-server-card__copy">
+    <span class="eyebrow">Official Discord</span>
+    <strong>Join the BlightFall community.</strong>
+    <span>Follow announcements and meet the community as development continues.</span>
+  </span>
+  <span class="discord-server-card__status" aria-hidden="true">
+    <img
+      src={widgetImage}
+      width="320"
+      height="76"
+      alt=""
+      loading="lazy"
+      decoding="async"
+      referrerpolicy="no-referrer"
+    />
+  </span>
+</a>
