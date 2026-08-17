@@ -1,0 +1,26 @@
+---
+import type { OfficialLink } from '../config/site';
+import PlatformIcon from './PlatformIcon.astro';
+
+interface Props {
+  link: OfficialLink;
+  variant?: 'primary' | 'secondary';
+}
+
+const { link, variant = 'secondary' } = Astro.props;
+if (!link.url) throw new Error(`Cannot render unconfirmed link: ${link.id}`);
+---
+
+<a
+  class:list={['link-button', `link-button--${variant}`]}
+  href={link.url}
+  data-analytics-id={link.analyticsId}
+  data-platform={link.platform}
+  rel="me"
+>
+  <span class="link-button__icon"><PlatformIcon platform={link.icon} /></span>
+  <span class="link-button__label">{link.label}</span>
+  <svg class="link-button__arrow" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+    <path d="M4 9h9M9.5 5.5 13 9l-3.5 3.5"></path>
+  </svg>
+</a>

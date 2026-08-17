@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Not Found — BlightFall"
+  description="The requested page could not be found on the official BlightFall website."
+  canonicalPath="/404/"
+  noindex
+>
+  <main id="main-content" class="error-page">
+    <section class="error-card" aria-labelledby="error-heading">
+      <p class="eyebrow">Error 404</p>
+      <h1 id="error-heading">This path fades into the dark.</h1>
+      <p>The page may have moved, or the route may not exist yet.</p>
+      <a class="link-button link-button--primary" href="/">
+        <span class="link-button__label">Return to BlightFall</span>
+        <svg
+          class="link-button__arrow"
+          width="18"
+          height="18"
+          viewBox="0 0 18 18"
+          aria-hidden="true"
+        >
+          <path d="M4 9h9M9.5 5.5 13 9l-3.5 3.5"></path>
+        </svg>
+      </a>
+    </section>
+  </main>
+</BaseLayout>

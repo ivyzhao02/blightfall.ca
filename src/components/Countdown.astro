@@ -1,0 +1,30 @@
+---
+interface Props {
+  date: string;
+}
+
+const { date } = Astro.props;
+---
+
+<p class="countdown" data-countdown={date} aria-live="polite">
+  <span class="countdown__label">Launch countdown</span>
+  <span class="countdown__value">Calculating…</span>
+</p>
+
+<script>
+  const element = document.querySelector<HTMLElement>('[data-countdown]');
+  const value = element?.querySelector<HTMLElement>('.countdown__value');
+  const target = element?.dataset.countdown ? Date.parse(element.dataset.countdown) : Number.NaN;
+
+  function updateCountdown() {
+    if (!value || Number.isNaN(target)) return;
+    const remaining = Math.max(0, target - Date.now());
+    const days = Math.floor(remaining / 86_400_000);
+    const hours = Math.floor((remaining % 86_400_000) / 3_600_000);
+    const minutes = Math.floor((remaining % 3_600_000) / 60_000);
+    value.textContent = remaining === 0 ? 'The time has come.' : `${days}d ${hours}h ${minutes}m`;
+  }
+
+  updateCountdown();
+  window.setInterval(updateCountdown, 60_000);
+</script>

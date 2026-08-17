@@ -1,0 +1,50 @@
+---
+import { siteConfig } from '../config/site';
+
+const { analytics } = siteConfig;
+const plausibleEnabled = analytics.provider === 'plausible' && analytics.plausibleDomain;
+const cloudflareEnabled = analytics.provider === 'cloudflare' && analytics.cloudflareToken;
+---
+
+{
+  plausibleEnabled && (
+    <script
+      is:inline
+      defer
+      data-domain={analytics.plausibleDomain}
+      src="https://plausible.io/js/script.js"
+    />
+  )
+}
+{
+  cloudflareEnabled && (
+    <script
+      is:inline
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon={JSON.stringify({ token: analytics.cloudflareToken })}
+    />
+  )
+}
+{
+  plausibleEnabled && (
+    <script is:inline>
+      {`window.plausible = window.plausible || function () {
+        (window.plausible.q = window.plausible.q || []).push(arguments);
+      };
+
+      document.addEventListener('click', function (event) {
+        const link = event.target.closest('[data-analytics-id]');
+        if (!link) return;
+        const source = new URLSearchParams(window.location.search).get('utm_source') || 'direct';
+        window.plausible('Outbound Link: Click', {
+          props: {
+            link: link.dataset.analyticsId,
+            source: source,
+            url: link.href,
+          },
+        });
+      });`}
+    </script>
+  )
+}

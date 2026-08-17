@@ -1,0 +1,53 @@
+---
+import { siteConfig } from '../config/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const analyticsEnabled = siteConfig.analytics.provider !== 'none';
+---
+
+<BaseLayout
+  title="Privacy — BlightFall"
+  description="Privacy information for the official BlightFall website."
+  canonicalPath="/privacy/"
+>
+  <main id="main-content" class="content-page">
+    <article class="content-card">
+      <p class="eyebrow">Official site</p>
+      <h1>Privacy</h1>
+      <p>
+        BlightFall’s website is designed to collect as little information as practical. This static
+        site does not use advertising trackers, fingerprint visitors, require an account, or set
+        marketing cookies.
+      </p>
+
+      <h2>Analytics</h2>
+      {
+        analyticsEnabled ? (
+          <p>
+            This site uses {siteConfig.analytics.provider} for aggregate, privacy-conscious traffic
+            measurement. The implementation is configured without advertising profiles or cross-site
+            tracking.
+          </p>
+        ) : (
+          <p>
+            <strong>No analytics service is active in this release.</strong> The code includes
+            optional hooks for a future cookieless analytics provider, but no analytics request is
+            sent until an approved provider is configured.
+          </p>
+        )
+      }
+
+      <h2>External links</h2>
+      <p>
+        Links to Discord, Roblox, and social platforms take you to services with their own privacy
+        practices. Review those services’ policies before using them.
+      </p>
+
+      <h2>Changes</h2>
+      <p>
+        This page will be updated before any material change to the site’s data collection. Last
+        reviewed: <time datetime="2026-08-17">August 17, 2026</time>.
+      </p>
+    </article>
+  </main>
+</BaseLayout>

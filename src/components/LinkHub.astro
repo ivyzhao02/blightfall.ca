@@ -1,0 +1,82 @@
+---
+import { getEnabledLinks, getPrimaryLink, siteConfig } from '../config/site';
+import Countdown from './Countdown.astro';
+import LinkButton from './LinkButton.astro';
+
+interface Props {
+  page: 'home' | 'links';
+}
+
+const { page } = Astro.props;
+const { release } = siteConfig;
+const releaseCopy = siteConfig.releaseCopy[release.state];
+const primaryLink = getPrimaryLink();
+const secondaryLinks = getEnabledLinks().filter((link) => link.id !== primaryLink.id);
+const heading = page === 'links' ? 'Official links' : 'The world is still taking shape.';
+---
+
+<main id="main-content" class:list={['link-hub', `link-hub--${page}`]}>
+  <section class="hero" aria-labelledby="page-heading">
+    <div class="hero__sigil" aria-hidden="true">
+      <img src="/assets/blightfall-icon.png" alt="" width="512" height="512" />
+    </div>
+    <img
+      class="hero__wordmark"
+      src="/assets/blightfall-wordmark.png"
+      width="1751"
+      height="446"
+      alt="BlightFall"
+    />
+    <p class="eyebrow">{releaseCopy.eyebrow}</p>
+    <h1 id="page-heading">{heading}</h1>
+    <p class="hero__description">{siteConfig.description}</p>
+    <p class="hero__message">{releaseCopy.message}</p>
+
+    {
+      release.showLaunchDate && release.launchDate && (
+        <p class="release-date">
+          Approved launch date:{' '}
+          <time datetime={release.launchDate}>
+            {new Intl.DateTimeFormat('en-CA', { dateStyle: 'long' }).format(
+              new Date(release.launchDate),
+            )}
+          </time>
+        </p>
+      )
+    }
+    {release.showCountdown && release.launchDate && <Countdown date={release.launchDate} />}
+
+    <div class="primary-action">
+      <LinkButton link={primaryLink} variant="primary" />
+    </div>
+  </section>
+
+  {
+    secondaryLinks.length > 0 && (
+      <section class="secondary-links" aria-labelledby="more-links-heading">
+        <h2 id="more-links-heading">More official destinations</h2>
+        <div class="secondary-links__grid">
+          {secondaryLinks.map((link) => (
+            <LinkButton link={link} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  {
+    release.showAnnouncementPrompt && (
+      <aside class="announcement-prompt" aria-label="Announcement prompt">
+        Development announcements are shared through official BlightFall channels.
+      </aside>
+    )
+  }
+  {
+    release.showNewsletter && (
+      <aside class="announcement-prompt" aria-label="Newsletter status">
+        Newsletter signup will appear here once an approved privacy-conscious provider is
+        configured.
+      </aside>
+    )
+  }
+</main>

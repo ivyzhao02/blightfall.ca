@@ -1,0 +1,40 @@
+---
+import {
+  siBluesky,
+  siDiscord,
+  siInstagram,
+  siRoblox,
+  siTiktok,
+  siX,
+  siYoutube,
+} from 'simple-icons';
+import type { Platform } from '../config/site';
+
+interface Props {
+  platform: Platform;
+  size?: number;
+}
+
+const { platform, size = 24 } = Astro.props;
+const icons = {
+  bluesky: siBluesky,
+  discord: siDiscord,
+  instagram: siInstagram,
+  roblox: siRoblox,
+  tiktok: siTiktok,
+  x: siX,
+  youtube: siYoutube,
+};
+const icon = icons[platform];
+---
+
+<svg
+  class="platform-icon"
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  aria-hidden="true"
+  focusable="false"
+>
+  <path d={icon.path}></path>
+</svg>
