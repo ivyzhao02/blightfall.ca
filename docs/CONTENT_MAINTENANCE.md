@@ -6,6 +6,7 @@
 - `src/content/projects.ts` contains game-specific records. BlightFall is currently the featured
   project, but the model supports additional games.
 - `src/content/team.ts` and `src/content/news.ts` remain empty until approved records exist.
+- `src/content/contact.ts` contains the approved public inquiry categories and email aliases.
 - `src/pages/projects/` renders the project index and individual public project pages.
 - `src/pages/studio.astro`, `news.astro`, and `contact.astro` provide the studio-level routes.
 
@@ -62,9 +63,15 @@ Publish a team member only after their name, role, biography, image, and optiona
 approved for public use. Keep unapproved records out of the repository rather than storing them as
 hidden drafts.
 
-Every news entry must declare whether it is studio-level or tied to a project. A contact form must
-remain absent until its destination, spam protection, retention, consent language, and privacy impact
-are decided. Request only the information genuinely needed to answer the inquiry.
+Every news entry must declare whether it is studio-level or tied to a project. Discord is currently
+the authoritative public location for game announcements; the website links there without embedding
+or synchronizing messages. Only add an item to the website archive after its copy is approved for
+publication.
+
+Approved public inquiry categories live in `src/content/contact.ts`. Keep unlisted aliases private.
+A contact form must remain absent until its provider, destination routing, spam protection, retention,
+consent language, and privacy impact are decided. Request only the information genuinely needed to
+answer the inquiry.
 
 ## Approved asset replacements
 

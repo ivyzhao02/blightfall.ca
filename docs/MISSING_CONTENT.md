@@ -17,7 +17,7 @@ The Discord, YouTube, TikTok, Instagram, X, and Bluesky destinations are confirm
 - Any alternate horizontal/mobile logo lockups required after layout expansion
 - Press-kit download package and usage guidance
 - Expanded approved studio and project descriptions
-- Approved public contact address or form route
+- Approved replacement hook and expanded overview copy for the BlightFall project page
 
 ## Studio content requiring approval
 
@@ -25,7 +25,7 @@ The Discord, YouTube, TikTok, Instagram, X, and Bluesky destinations are confirm
 - Founding history or dates
 - Any legal name or future incorporated status
 - Public team roster, roles, biographies, images, and links
-- Contact destination, form fields, spam protection, retention, and consent language
+- Hosted-form provider, fields, spam protection, routing, retention, and consent language
 - Studio announcements or devlog entries
 
 The current release uses the approved final BlightFall wordmark, experience icon, violet palette, and
@@ -39,3 +39,4 @@ fonts.
 - Redirect implementation method
 - Security-header policy within GitHub Pages limitations or after a future host change
 - Approved team profiles and the timing for publishing a dedicated team route
+- Whether approved Discord announcements should later be republished in a website archive

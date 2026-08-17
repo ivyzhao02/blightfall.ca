@@ -72,6 +72,27 @@ for (const [name, html] of Object.entries(pages)) {
 
 assert(pages.home.includes('independent game studio'), 'home: studio-level metadata');
 
+const approvedContactAddresses = [
+  'hello@blightfall.ca',
+  'business@blightfall.ca',
+  'press@blightfall.ca',
+  'support@blightfall.ca',
+  'privacy@blightfall.ca',
+];
+for (const address of approvedContactAddresses) {
+  assert(pages.contact.includes(`mailto:${address}`), `contact: approved route ${address}`);
+}
+assert(
+  !pages.contact.includes('mailto:blightfall@blightfall.ca'),
+  'contact: root inbox is private',
+);
+assert(
+  !pages.contact.includes('mailto:contact@blightfall.ca'),
+  'contact: fallback alias is private',
+);
+assert(!pages.contact.includes('<form'), 'contact: collection form remains disabled');
+assert(!pages.news.includes('<iframe'), 'news: no third-party Discord feed');
+
 for (const [name, html] of Object.entries(pages)) {
   assert(!/(datePublished|releaseDate)/i.test(html), `${name}: unapproved release date property`);
   assert(

@@ -2,7 +2,6 @@
 import LinkButton from '../components/LinkButton.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getPrimaryLink } from '../config/site';
-import { blightFallGame } from '../content/projects';
 
 const primaryLink = getPrimaryLink();
 ---
@@ -54,7 +53,7 @@ const primaryLink = getPrimaryLink();
           height="446"
           alt="BlightFall"
         />
-        <p>{blightFallGame.summary}</p>
+        <p>The current flagship project from BlightFall studio, in development for Roblox.</p>
       </a>
     </section>
 
@@ -83,7 +82,10 @@ const primaryLink = getPrimaryLink();
       <div class="project-feature__content">
         <p class="eyebrow">Current project · Roblox</p>
         <h2 id="project-heading">BlightFall</h2>
-        <p>{blightFallGame.description}</p>
+        <p>
+          The studio’s current flagship title is a party-based dark-fantasy RPG in development for
+          Roblox.
+        </p>
         <dl class="project-facts">
           <div><dt>Status</dt><dd>Pre-alpha development</dd></div>
           <div><dt>Platform</dt><dd>Roblox</dd></div>
@@ -101,11 +103,9 @@ const primaryLink = getPrimaryLink();
         <h2 id="dispatch-heading">Follow the work as it takes shape.</h2>
       </div>
       <div class="dispatch-section__actions">
-        <p>
-          Studio announcements and project updates will be collected here as they are published.
-        </p>
+        <p>Current game announcements are published through the official BlightFall Discord.</p>
         <a class="inline-link" href="/news/">
-          Development news <span aria-hidden="true">→</span>
+          Discord announcements <span aria-hidden="true">→</span>
         </a>
         <a class="inline-link" href="/links/">
           All official channels <span aria-hidden="true">→</span>

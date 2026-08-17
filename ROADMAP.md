@@ -27,9 +27,11 @@ implemented. Future work in this phase is approved content expansion rather than
 - About the Studio: add only approved background, creative direction, values, and development
   approach.
 - Team: add founding members only after each name, role, biography, image, and link is approved.
-- News/Development: support studio announcements, game updates, and devlogs with explicit scope.
-- Contact: add approved contact information or a form only after its privacy and operational design
-  is settled.
+- News/Development: point to the official Discord as the current announcement source while retaining
+  a separate model for a future approved website archive. **Implemented.**
+- Contact: publish approved direct-email routes for general, business, press, support, and privacy
+  inquiries. **Implemented.** A hosted form remains deferred pending its privacy and operational
+  design.
 - Keep `/links/` and `/privacy/` stable while the broader site grows around them.
 
 ## Phase 2 — Flagship game marketing
@@ -45,6 +47,7 @@ All implementation-specific text remains pre-alpha and requires current project 
 
 ## Phase 3 — Studio news and development updates
 
+- Curated republication of approved Discord announcements on the public website
 - Markdown content collections with separate studio and project records
 - Categories, tags, article routes, RSS, and article sharing metadata
 - Build-pipeline support for scheduled publication

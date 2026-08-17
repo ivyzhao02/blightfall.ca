@@ -84,3 +84,67 @@ test('studio navigation exposes the public site structure', async ({ page }) => 
   await expect(navigation.getByRole('link', { name: 'News' })).toBeVisible();
   await expect(navigation.getByRole('link', { name: 'Official links' })).toBeVisible();
 });
+
+const brandImages = [
+  ['/', '.flagship-visual__wordmark'],
+  ['/', '.project-feature__media img'],
+  ['/links/', '.hero__wordmark'],
+  ['/links/', '.hero__sigil img'],
+  ['/projects/blightfall/', '.game-hero__title img'],
+] as const;
+
+for (const [path, selector] of brandImages) {
+  test(`${path} preserves the aspect ratio of ${selector}`, async ({ page }) => {
+    await page.goto(path);
+    const dimensions = await page.locator(selector).evaluate((image: HTMLImageElement) => ({
+      naturalRatio: image.naturalWidth / image.naturalHeight,
+      renderedRatio: image.getBoundingClientRect().width / image.getBoundingClientRect().height,
+    }));
+
+    expect(dimensions.naturalRatio).toBeGreaterThan(0);
+    expect(Math.abs(dimensions.naturalRatio - dimensions.renderedRatio)).toBeLessThan(0.02);
+  });
+}
+
+test('contact publishes only the approved categorized inboxes', async ({ page }) => {
+  await page.goto('/contact/');
+  const addresses = [
+    'hello@blightfall.ca',
+    'business@blightfall.ca',
+    'press@blightfall.ca',
+    'support@blightfall.ca',
+    'privacy@blightfall.ca',
+  ];
+
+  for (const address of addresses) {
+    await expect(page.locator(`a[href^="mailto:${address}"]`)).toHaveCount(1);
+  }
+  await expect(page.locator('a[href^="mailto:"]')).toHaveCount(addresses.length);
+  await expect(page.locator('form')).toHaveCount(0);
+});
+
+test('news identifies Discord as the current source without embedding a third-party feed', async ({
+  page,
+}) => {
+  await page.goto('/news/');
+  await expect(
+    page.getByRole('heading', { name: 'Follow game announcements in Discord.' }),
+  ).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Join the Discord' })).toHaveAttribute(
+    'href',
+    'https://discord.gg/blightfall',
+  );
+  await expect(page.locator('iframe')).toHaveCount(0);
+});
+
+test('the detailed project description is not repeated in visible project copy', async ({
+  page,
+}) => {
+  await page.goto('/projects/blightfall/');
+  await expect(
+    page.getByText(
+      'BlightFall is an upcoming dark-fantasy Roblox RPG in pre-alpha development, combining exploration, party-based turn combat, and progression across lives.',
+      { exact: true },
+    ),
+  ).toHaveCount(1);
+});

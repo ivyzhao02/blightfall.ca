@@ -1,8 +1,13 @@
 ---
+import LinkButton from '../components/LinkButton.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEnabledLinks } from '../config/site';
 import { newsEntries } from '../content/news';
 
 const publicNews = newsEntries.filter((entry) => entry.approvedForPublication);
+const discordLink = getEnabledLinks().find((link) => link.id === 'discord');
+
+if (!discordLink) throw new Error('The news page requires the official Discord destination.');
 ---
 
 <BaseLayout
@@ -13,12 +18,26 @@ const publicNews = newsEntries.filter((entry) => entry.approvedForPublication);
   <main id="main-content" class="editorial-page">
     <header class="editorial-hero">
       <p class="eyebrow">News & development</p>
-      <h1>Dispatches from BlightFall.</h1>
-      <p>Official studio announcements and project updates will be collected here.</p>
+      <h1>Updates live in the community.</h1>
+      <p>Official game announcements are currently published through the BlightFall Discord.</p>
     </header>
 
+    <section class="discord-news section-block" aria-labelledby="discord-news-heading">
+      <div>
+        <p class="eyebrow">Current announcement source</p>
+        <h2 id="discord-news-heading">Follow game announcements in Discord.</h2>
+      </div>
+      <div class="discord-news__content">
+        <p>
+          Join the official server to read current announcements at their source and follow
+          BlightFall’s development as new updates are posted.
+        </p>
+        <LinkButton link={discordLink} variant="primary" />
+      </div>
+    </section>
+
     {
-      publicNews.length > 0 ? (
+      publicNews.length > 0 && (
         <section class="news-list" aria-label="Published news">
           {publicNews.map((entry) => (
             <article>
@@ -27,15 +46,6 @@ const publicNews = newsEntries.filter((entry) => entry.approvedForPublication);
               <p>{entry.summary}</p>
             </article>
           ))}
-        </section>
-      ) : (
-        <section class="empty-state" aria-labelledby="empty-heading">
-          <p class="eyebrow">Archive opening soon</p>
-          <h2 id="empty-heading">No dispatches have been published yet.</h2>
-          <p>Until then, follow the official channels for current public updates.</p>
-          <a class="text-action" href="/links/">
-            Official BlightFall links <span aria-hidden="true">↗</span>
-          </a>
         </section>
       )
     }

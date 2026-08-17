@@ -96,3 +96,24 @@ while keeping the link route fast and easy to maintain.
 
 Public navigation exposes only useful routes with approved copy. Team data remains modeled but a
 team route is deferred until approved profiles exist, avoiding an empty or speculative public page.
+
+## ADR-011: Contact routes use direct email links before a hosted form
+
+**Status:** accepted
+
+The public contact directory routes general, business, press, support, and privacy inquiries to
+approved Zoho aliases using direct `mailto:` links. The site does not collect, relay, or retain form
+submissions. A hosted form remains deferred until its provider, destination routing, spam controls,
+retention, consent language, and privacy impact are approved.
+
+## ADR-012: Discord is the current announcement source, not an embedded feed
+
+**Status:** accepted
+
+The news page identifies the official BlightFall Discord as the current source and links visitors to
+it. Discord's official server widget does not expose channel messages, while reading announcements
+through the API requires an authenticated application and channel permissions. The public site will
+not add an unapproved bot, synchronization process, credential, or third-party tracking widget.
+
+A future website archive can use approved, intentionally published news records, or a separately
+reviewed synchronization design with strict public-channel and data boundaries.

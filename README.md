@@ -88,6 +88,10 @@ See [Content maintenance](docs/CONTENT_MAINTENANCE.md) for the full safe update 
 - Domain verification, apex DNS, and the `www` redirect are configured without changing Zoho mail.
 - Analytics remains disabled and the site sets no analytics cookies.
 - Discord, YouTube, TikTok, Instagram, X, and Bluesky are confirmed and enabled.
+- The news page directs visitors to the official Discord announcement source without embedding or
+  synchronizing messages.
+- Categorized general, business, press, support, and privacy email routes are published; no hosted
+  contact form or submission storage is active.
 - Roblox group/game and current trailer destinations remain disabled until confirmed.
 - Studio-level metadata identifies BlightFall as an independent game studio; game-specific copy
   remains scoped to the flagship pre-alpha Roblox project.
