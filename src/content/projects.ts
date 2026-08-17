@@ -9,9 +9,11 @@ export const projects: Project[] = [
     status: 'prealpha',
     featured: true,
     platform: ['Roblox'],
-    summary: 'An upcoming dark-fantasy Roblox RPG in pre-alpha development.',
+    hook: 'A world consumed by the Blight. A life you may not keep.',
+    summary:
+      'A turn-based dark-fantasy RPG for Roblox about fragile vessels, party battles, and building a legacy across lives.',
     description:
-      'BlightFall is an upcoming dark-fantasy Roblox RPG in pre-alpha development, combining exploration, party-based turn combat, and progression across lives.',
+      'Explore a hand-built world, train into branching classes, take on quests and bosses, and fight through formal turn-based battles alone or with a party. Death can end a character, but permanent Remnants carry part of each lost life into the next.',
     publicPageEnabled: true,
   },
 ];

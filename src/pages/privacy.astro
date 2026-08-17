@@ -15,54 +15,44 @@ const analyticsEnabled = siteConfig.analytics.provider !== 'none';
       <p class="eyebrow">Official site</p>
       <h1>Privacy</h1>
       <p>
-        BlightFall’s website is designed to collect as little information as practical. This static
-        site does not use advertising trackers, fingerprint visitors, require an account, or set
-        marketing cookies.
+        This static website does not collect personal information directly or require an account.
       </p>
 
       <h2>Analytics</h2>
       {
         analyticsEnabled ? (
           <p>
-            This site uses {siteConfig.analytics.provider} for aggregate, privacy-conscious traffic
-            measurement. The implementation is configured without advertising profiles or cross-site
-            tracking.
+            This site uses {siteConfig.analytics.provider} for aggregate traffic measurement without
+            advertising profiles or cross-site tracking.
           </p>
         ) : (
           <p>
-            <strong>No analytics service is active in this release.</strong> The code includes
-            optional hooks for a future cookieless analytics provider, but no analytics request is
-            sent until an approved provider is configured.
+            <strong>No analytics service is active.</strong> We do not use advertising trackers,
+            fingerprinting, or marketing cookies.
           </p>
         )
       }
 
       <h2>External links</h2>
-      <p>
-        Links to Discord, Roblox, and social platforms take you to services with their own privacy
-        practices. Review those services’ policies before using them.
-      </p>
+      <p>Discord, Roblox, and linked social platforms have their own privacy practices.</p>
 
-      <h2>Live Discord server status</h2>
+      <h2>Discord community statistics</h2>
       <p>
-        The News page loads an official server-status image directly from Discord. It displays the
-        BlightFall server name and current online count without displaying a member list. When the
-        image loads, Discord receives ordinary request information such as your IP address and
-        browser details. BlightFall does not receive that request data.
+        The News page requests aggregate member and online counts from Discord. It does not request
+        usernames. Discord receives standard request information such as your IP address and browser
+        details; BlightFall does not receive it.
       </p>
 
       <h2>Contact by email</h2>
       <p>
-        The contact page uses direct email links rather than a hosted form. If you email BlightFall,
-        the message, your email address, and anything you attach will be available to the BlightFall
-        mailbox administrators and the email providers involved in delivery. Do not include
-        unnecessary sensitive information.
+        Emailing BlightFall shares your address, message, and attachments with BlightFall and the
+        email providers that deliver them. Avoid sending unnecessary sensitive information.
       </p>
 
       <h2>Changes</h2>
       <p>
-        This page will be updated before any material change to the site’s data collection. Last
-        reviewed: <time datetime="2026-08-17">August 17, 2026</time>.
+        This page will be updated before the site’s data practices materially change. Last reviewed:
+        <time datetime="2026-08-17">August 17, 2026</time>.
       </p>
     </article>
   </main>

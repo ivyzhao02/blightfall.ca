@@ -93,12 +93,18 @@ assert(
 assert(!pages.contact.includes('<form'), 'contact: collection form remains disabled');
 assert(!pages.news.includes('<iframe'), 'news: no third-party Discord feed');
 assert(
-  pages.news.includes(
-    'https://discord.com/api/guilds/1511511102351998996/widget.png?style=banner2',
-  ),
-  'news: approved Discord server status widget',
+  pages.news.includes('https://discord.com/api/v10/invites/blightfall?with_counts=true'),
+  'news: approved Discord aggregate-count endpoint',
 );
-assert(pages.news.includes('referrerpolicy="no-referrer"'), 'news: widget referrer policy');
+assert(pages.news.includes("credentials: 'omit'"), 'news: Discord request omits credentials');
+assert(
+  pages.news.includes("referrerPolicy: 'no-referrer'"),
+  'news: Discord request omits referrer',
+);
+assert(!pages.news.includes('widget.png'), 'news: low-resolution Discord image removed');
+assert(!pages.news.includes('data-discord-members="'), 'news: no hardcoded member count');
+assert(!pages.home.includes('Official site.</p>'), 'footer: concise copyright line');
+assert(!pages.blightfall.includes('approved for publication'), 'game: no stiff approval language');
 
 for (const [name, html] of Object.entries(pages)) {
   assert(!/(datePublished|releaseDate)/i.test(html), `${name}: unapproved release date property`);

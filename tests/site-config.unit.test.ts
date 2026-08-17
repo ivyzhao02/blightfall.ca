@@ -54,7 +54,7 @@ describe('public site configuration', () => {
   it('uses the approved public Discord server widget', () => {
     expect(siteConfig.discordWidget).toEqual({
       guildId: '1511511102351998996',
-      imageStyle: 'banner2',
+      statsEndpoint: 'https://discord.com/api/v10/invites/blightfall?with_counts=true',
     });
   });
 
@@ -89,6 +89,7 @@ describe('public site configuration', () => {
       status: 'prealpha',
       featured: true,
       platform: ['Roblox'],
+      hook: 'A world consumed by the Blight. A life you may not keep.',
     });
     expect(projects).toHaveLength(1);
   });

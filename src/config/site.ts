@@ -60,7 +60,7 @@ export const siteConfig = {
   },
   discordWidget: {
     guildId: '1511511102351998996',
-    imageStyle: 'banner2' as const,
+    statsEndpoint: 'https://discord.com/api/v10/invites/blightfall?with_counts=true',
   },
 } as const;
 

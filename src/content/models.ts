@@ -17,6 +17,7 @@ export interface Project {
   status: ProjectStatus;
   featured: boolean;
   platform: string[];
+  hook: string;
   summary: string;
   description: string;
   publicPageEnabled: boolean;

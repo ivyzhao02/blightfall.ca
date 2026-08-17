@@ -1,33 +1,90 @@
 ---
 import { getEnabledLinks, siteConfig } from '../config/site';
+import PlatformIcon from './PlatformIcon.astro';
 
 const discordLink = getEnabledLinks().find((link) => link.id === 'discord');
 if (!discordLink?.url) throw new Error('The Discord server widget requires the official invite.');
-
-const widgetImage = `https://discord.com/api/guilds/${siteConfig.discordWidget.guildId}/widget.png?style=${siteConfig.discordWidget.imageStyle}`;
 ---
 
 <a
   class="discord-server-card"
   href={discordLink.url}
+  data-discord-widget
+  data-stats-endpoint={siteConfig.discordWidget.statsEndpoint}
   data-analytics-id="join-discord-widget"
   rel="me"
   aria-label="Join the official BlightFall Discord server"
 >
+  <span class="discord-server-card__header">
+    <span class="discord-server-card__identity">
+      <img src="/assets/blightfall-icon.png" width="512" height="512" alt="" />
+      <span>
+        <span class="eyebrow">Official Discord</span>
+        <strong>BlightFall</strong>
+      </span>
+    </span>
+    <span class="discord-server-card__discord" aria-hidden="true">
+      <PlatformIcon platform="discord" />
+    </span>
+  </span>
   <span class="discord-server-card__copy">
-    <span class="eyebrow">Official Discord</span>
     <strong>Join the BlightFall community.</strong>
     <span>Follow announcements and meet the community as development continues.</span>
   </span>
-  <span class="discord-server-card__status" aria-hidden="true">
-    <img
-      src={widgetImage}
-      width="320"
-      height="76"
-      alt=""
-      loading="lazy"
-      decoding="async"
-      referrerpolicy="no-referrer"
-    />
+  <span class="discord-server-card__stats" aria-label="Live Discord community statistics">
+    <span>
+      <strong data-discord-members aria-live="polite">—</strong>
+      <span>Members</span>
+    </span>
+    <span>
+      <strong data-discord-online aria-live="polite">—</strong>
+      <span>Online now</span>
+    </span>
+  </span>
+  <span class="discord-server-card__action">
+    Join the server
+    <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+      <path d="M4 9h9M9.5 5.5 13 9l-3.5 3.5"></path>
+    </svg>
   </span>
 </a>
+
+<script is:inline>
+  (() => {
+    const numberFormat = new Intl.NumberFormat('en-CA');
+
+    document.querySelectorAll('[data-discord-widget]').forEach(async (card) => {
+      const endpoint = card.dataset.statsEndpoint;
+      if (!endpoint) return;
+
+      try {
+        const response = await fetch(endpoint, {
+          credentials: 'omit',
+          referrerPolicy: 'no-referrer',
+        });
+        if (!response.ok) throw new Error(`Discord returned ${response.status}`);
+
+        const data = await response.json();
+        if (
+          !Number.isFinite(data.approximate_member_count) ||
+          !Number.isFinite(data.approximate_presence_count)
+        ) {
+          throw new Error('Discord counts were unavailable');
+        }
+
+        const members = numberFormat.format(data.approximate_member_count);
+        const online = numberFormat.format(data.approximate_presence_count);
+
+        card.querySelector('[data-discord-members]').textContent = members;
+        card.querySelector('[data-discord-online]').textContent = online;
+        card.setAttribute(
+          'aria-label',
+          `Join the official BlightFall Discord server — ${members} members, ${online} online`,
+        );
+      } catch {
+        card.querySelector('[data-discord-members]').textContent = 'Unavailable';
+        card.querySelector('[data-discord-online]').textContent = 'Unavailable';
+      }
+    });
+  })();
+</script>

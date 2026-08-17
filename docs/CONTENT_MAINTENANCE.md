@@ -68,9 +68,9 @@ the authoritative public location for game announcements; the website links ther
 or synchronizing messages. Only add an item to the website archive after its copy is approved for
 publication.
 
-The News page's official server-status image is configured in `src/config/site.ts`. It shows the
-server name and live online count but no member list or messages. If it is removed or replaced,
-review the related disclosure on the Privacy page.
+The News page's aggregate Discord statistics endpoint is configured in `src/config/site.ts`. It
+provides approximate total-member and online counts but no usernames, member list, or messages. If
+the endpoint or information displayed changes, review the related disclosure on the Privacy page.
 
 Approved public inquiry categories live in `src/content/contact.ts`. Keep unlisted aliases private.
 A contact form must remain absent until its provider, destination routing, spam protection, retention,

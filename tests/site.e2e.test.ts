@@ -126,16 +126,27 @@ test('contact publishes only the approved categorized inboxes', async ({ page })
 test('news identifies Discord as the current source without embedding a third-party feed', async ({
   page,
 }) => {
+  await page.route(
+    'https://discord.com/api/v10/invites/blightfall?with_counts=true',
+    async (route) => {
+      await route.fulfill({
+        contentType: 'application/json',
+        body: JSON.stringify({
+          approximate_member_count: 1550,
+          approximate_presence_count: 544,
+        }),
+      });
+    },
+  );
   await page.goto('/news/');
   await expect(
     page.getByRole('heading', { name: 'Follow game announcements in Discord.' }),
   ).toBeVisible();
-  const widget = page.getByRole('link', { name: 'Join the official BlightFall Discord server' });
+  const widget = page.locator('[data-discord-widget]');
   await expect(widget).toHaveAttribute('href', 'https://discord.gg/blightfall');
-  await expect(widget.locator('img')).toHaveAttribute(
-    'src',
-    'https://discord.com/api/guilds/1511511102351998996/widget.png?style=banner2',
-  );
+  await expect(widget.locator('[data-discord-members]')).toHaveText('1,550');
+  await expect(widget.locator('[data-discord-online]')).toHaveText('544');
+  await expect(widget.locator('img')).toHaveAttribute('src', '/assets/blightfall-icon.png');
   await expect(page.locator('iframe')).toHaveCount(0);
 });
 
@@ -145,8 +156,17 @@ test('the detailed project description is not repeated in visible project copy',
   await page.goto('/projects/blightfall/');
   await expect(
     page.getByText(
-      'BlightFall is an upcoming dark-fantasy Roblox RPG in pre-alpha development, combining exploration, party-based turn combat, and progression across lives.',
+      'Explore a hand-built world, train into branching classes, take on quests and bosses, and fight through formal turn-based battles alone or with a party. Death can end a character, but permanent Remnants carry part of each lost life into the next.',
       { exact: true },
     ),
   ).toHaveCount(1);
+  await expect(
+    page.getByText('A world consumed by the Blight. A life you may not keep.', { exact: true }),
+  ).toBeVisible();
+  await expect(page.getByText(/approved for publication/i)).toHaveCount(0);
+});
+
+test('the footer uses the concise copyright line', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('.site-footer__legal')).toHaveText('© 2026 BlightFall');
 });

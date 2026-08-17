@@ -17,7 +17,7 @@ project-owner approval.
 
 - Astro with strict TypeScript
 - Static HTML output with no database and no client framework
-- No client-side JavaScript in the current pre-launch configuration
+- Minimal client-side JavaScript, limited to aggregate live Discord community statistics
 - Vitest for configuration tests
 - Playwright and axe-core for browser and accessibility checks
 - ESLint and Prettier for code quality
@@ -90,8 +90,8 @@ See [Content maintenance](docs/CONTENT_MAINTENANCE.md) for the full safe update 
 - Discord, YouTube, TikTok, Instagram, X, and Bluesky are confirmed and enabled.
 - The news page directs visitors to the official Discord announcement source without embedding or
   synchronizing messages.
-- An official live Discord status image on the News page provides the server name and online count
-  without exposing its member list or adding client-side JavaScript.
+- A site-native Discord panel on the News page shows aggregate member and online counts without
+  exposing usernames or a member list.
 - Categorized general, business, press, support, and privacy email routes are published; no hosted
   contact form or submission storage is active.
 - Roblox group/game and current trailer destinations remain disabled until confirmed.

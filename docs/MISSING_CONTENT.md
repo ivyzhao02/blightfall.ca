@@ -17,7 +17,7 @@ The Discord, YouTube, TikTok, Instagram, X, and Bluesky destinations are confirm
 - Any alternate horizontal/mobile logo lockups required after layout expansion
 - Press-kit download package and usage guidance
 - Expanded approved studio and project descriptions
-- Approved replacement hook and expanded overview copy for the BlightFall project page
+- Final lore-developer review of the provisional project hook and expanded overview copy
 
 ## Studio content requiring approval
 

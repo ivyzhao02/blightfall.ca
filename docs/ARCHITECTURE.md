@@ -115,10 +115,12 @@ it. Discord's official server widget does not expose channel messages, while rea
 through the API requires an authenticated application and channel permissions. The public site will
 not add an unapproved bot, synchronization process, or credential.
 
-The News page uses Discord's unauthenticated PNG widget endpoint to display the server icon, name,
-and live online count. It deliberately avoids the iframe member list, requires no client-side
-JavaScript, sends no site referrer, and is disclosed on the Privacy page. The widget is an invitation
-to the community, not an announcement feed or source of website content.
+The News page uses Discord's public invite endpoint to request approximate aggregate member and
+online counts. A native site component presents those statistics with the approved local icon and a
+vector Discord mark, avoiding the low-resolution PNG widget and iframe member list. The small,
+isolated browser request omits credentials and the site referrer. It exposes no usernames or
+messages and is disclosed on the Privacy page. The panel is an invitation to the community, not an
+announcement feed or source of website content.
 
 A future website archive can use approved, intentionally published news records, or a separately
 reviewed synchronization design with strict public-channel and data boundaries.
