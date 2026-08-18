@@ -94,7 +94,8 @@ See [Content maintenance](docs/CONTENT_MAINTENANCE.md) for the full safe update 
   exposing usernames or a member list.
 - Categorized general, business, press, support, and privacy email routes are published; no hosted
   contact form or submission storage is active.
-- Roblox group/game and current trailer destinations remain disabled until confirmed.
+- The Roblox group is confirmed and enabled. The public game and current trailer destinations remain
+  disabled until confirmed.
 - Studio-level metadata identifies BlightFall as an independent game studio; game-specific copy
   remains scoped to the flagship pre-alpha Roblox project.
 

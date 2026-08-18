@@ -178,6 +178,7 @@ assert(
   JSON.stringify([...new Set(enabledExternalAnchors)]) ===
     JSON.stringify([
       'https://discord.gg/blightfall',
+      'https://www.roblox.com/share/g/15580589',
       'https://www.youtube.com/@BlightFallRoblox',
       'https://www.tiktok.com/@blightfallroblox',
       'https://www.instagram.com/blightfallroblox/',

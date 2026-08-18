@@ -64,6 +64,10 @@ test('approved social destinations are published and unconfirmed destinations ar
 }) => {
   await page.goto('/links/');
   await expect(page.getByRole('link', { name: 'Join the Discord' })).toHaveCount(1);
+  await expect(page.getByRole('link', { name: 'Join the Roblox group' })).toHaveAttribute(
+    'href',
+    'https://www.roblox.com/share/g/15580589',
+  );
   await expect(page.getByRole('link', { name: 'YouTube' })).toHaveAttribute(
     'href',
     'https://www.youtube.com/@BlightFallRoblox',
@@ -72,7 +76,6 @@ test('approved social destinations are published and unconfirmed destinations ar
   await expect(page.getByRole('link', { name: 'Instagram' })).toHaveCount(1);
   await expect(page.getByRole('link', { name: 'X', exact: true })).toHaveCount(1);
   await expect(page.getByRole('link', { name: 'Bluesky' })).toHaveCount(1);
-  await expect(page.getByRole('link', { name: /Roblox/i })).toHaveCount(0);
   await expect(page.getByRole('link', { name: /latest gameplay/i })).toHaveCount(0);
 });
 

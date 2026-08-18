@@ -7,8 +7,8 @@ incorporation, approve a legal entity, or authorize public facts that have not b
 ## Phase 0 — Verified pre-launch link hub
 
 - Retain `/links/` as the permanent official-link destination. **Implemented.**
-- YouTube, TikTok, Instagram, X, and Bluesky are confirmed and enabled. Roblox group/game and
-  trailer/gameplay destinations remain pending confirmation.
+- The Roblox group, YouTube, TikTok, Instagram, X, and Bluesky are confirmed and enabled. The public
+  Roblox game and trailer/gameplay destinations remain pending confirmation.
 - Continue using only approved production assets. **Implemented for the current release.**
 - GitHub Pages is the current static host with automated production deployment from `main`.
 - Approve a privacy-conscious analytics provider and update the privacy page before activation.

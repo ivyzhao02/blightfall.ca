@@ -4,7 +4,6 @@ The site intentionally omits every unconfirmed destination instead of publishing
 
 ## Links requiring confirmation
 
-- Roblox group or community URL
 - Public Roblox game URL for the future “Play BlightFall” action
 - Current approved gameplay or trailer URL
 
