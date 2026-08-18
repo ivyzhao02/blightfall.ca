@@ -1,6 +1,5 @@
 ---
 import { getEnabledLinks, getPrimaryLink, siteConfig } from '../config/site';
-import { blightFallGame } from '../content/projects';
 import Countdown from './Countdown.astro';
 import LinkButton from './LinkButton.astro';
 
@@ -10,7 +9,6 @@ interface Props {
 
 const { page } = Astro.props;
 const { release } = siteConfig;
-const releaseCopy = siteConfig.releaseCopy[release.state];
 const primaryLink = getPrimaryLink();
 const secondaryLinks = getEnabledLinks().filter((link) => link.id !== primaryLink.id);
 const heading = page === 'links' ? 'Official links' : 'Coming Soon';
@@ -28,10 +26,8 @@ const heading = page === 'links' ? 'Official links' : 'Coming Soon';
       height="446"
       alt="BlightFall"
     />
-    <p class="eyebrow">{releaseCopy.eyebrow}</p>
+    <p class="eyebrow">Verified destinations</p>
     <h1 id="page-heading">{heading}</h1>
-    <p class="hero__description">{blightFallGame.description}</p>
-    <p class="hero__message">{releaseCopy.message}</p>
 
     {
       release.showLaunchDate && release.launchDate && (

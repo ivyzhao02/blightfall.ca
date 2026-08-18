@@ -52,6 +52,8 @@ consent language, retention policy, and privacy-page update are approved.
 - Keep `siteConfig.description` studio-level and legally neutral.
 - Keep gameplay copy in the relevant project record rather than the studio profile.
 - Page-specific titles and descriptions live in `src/pages/`.
+- Give each route distinct body copy. `/links/` is a destination utility and should not repeat game
+  descriptions or studio introductions from editorial pages.
 - Do not add a release date to structured data until approved.
 - Use `Organization` structured data for the studio site and `VideoGame` only on game-specific pages.
 - Keep social-image dimensions at 1200×630 and use approved assets only.
@@ -81,4 +83,7 @@ answer the inquiry.
 
 Place optimized public exports in `public/assets/`, icons in `public/icons/`, and sharing previews in
 `public/social/`. Preserve aspect ratio, alternative text, and explicit width/height attributes.
-Source files and private production libraries should stay outside this repository.
+Approved atmosphere artwork lives in `public/assets/site/`: use the paired desktop/mobile game files
+through `GameAtmosphere.astro`, keep studio artwork separate from gameplay presentation, and use the
+arcane divider selectively. Source files and private production libraries should stay outside this
+repository.

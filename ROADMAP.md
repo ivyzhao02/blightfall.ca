@@ -39,6 +39,8 @@ implemented. Future work in this phase is approved content expansion rather than
 - Expanded game hero and approved trailer
 - Public-safe overview and approved gameplay features
 - Screenshot and media gallery
+- Optional rotating galleries for future approved key art and screenshots, with a static and
+  reduced-motion fallback
 - Approved sections for the world, races, classes, combat, and party systems
 - Release status, platform availability, and play/follow/favourite actions
 - Discord community callout

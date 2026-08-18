@@ -105,6 +105,59 @@ assert(!pages.news.includes('widget.png'), 'news: low-resolution Discord image r
 assert(!pages.news.includes('data-discord-members="'), 'news: no hardcoded member count');
 assert(!pages.home.includes('Official site.</p>'), 'footer: concise copyright line');
 assert(!pages.blightfall.includes('approved for publication'), 'game: no stiff approval language');
+assert(!pages.links.includes('Explore a hand-built world'), 'links: no repeated game description');
+assert(
+  !pages.links.includes('hero__description'),
+  'links: compact utility has no description block',
+);
+
+for (const [name, html] of [
+  ['home', pages.home],
+  ['projects', pages.projects],
+  ['blightfall', pages.blightfall],
+]) {
+  assert(
+    html.includes('/assets/site/game-atmosphere-desktop-1600x900.webp'),
+    `${name}: desktop game atmosphere`,
+  );
+  assert(
+    html.includes('/assets/site/game-atmosphere-mobile-1024x1536.webp'),
+    `${name}: mobile game atmosphere`,
+  );
+  assert(!html.includes('/assets/blightfall-backdrop.webp'), `${name}: legacy backdrop removed`);
+}
+assert(
+  pages.studio.includes('/assets/site/studio-atmosphere-1600x900.webp'),
+  'studio: approved atmosphere',
+);
+assert(pages.home.includes('/assets/site/arcane-divider-1920x320.png'), 'home: arcane divider');
+assert(
+  pages.blightfall.includes('/assets/site/arcane-divider-1920x320.png'),
+  'blightfall: arcane divider',
+);
+
+function normalizeBodyCopy(value) {
+  return value
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&rsquo;/g, '’')
+    .replace(/&amp;/g, '&')
+    .replace(/&#x27;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+const bodyCopyOwners = new Map();
+for (const [name, html] of Object.entries(pages)) {
+  if (name === 'notFound') continue;
+  const main = html.match(/<main\b[\s\S]*?<\/main>/)?.[0] ?? '';
+  for (const match of main.matchAll(/<p(?:\s[^>]*)?>([\s\S]*?)<\/p>/g)) {
+    const copy = normalizeBodyCopy(match[1]);
+    if (copy.length < 70) continue;
+    const owner = bodyCopyOwners.get(copy);
+    assert(!owner, `body copy repeated on ${owner} and ${name}: ${copy}`);
+    bodyCopyOwners.set(copy, name);
+  }
+}
 
 for (const [name, html] of Object.entries(pages)) {
   assert(!/(datePublished|releaseDate)/i.test(html), `${name}: unapproved release date property`);

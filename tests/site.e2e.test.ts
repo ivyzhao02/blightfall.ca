@@ -76,6 +76,34 @@ test('approved social destinations are published and unconfirmed destinations ar
   await expect(page.getByRole('link', { name: /latest gameplay/i })).toHaveCount(0);
 });
 
+test('the permanent links page stays compact and does not repeat editorial game copy', async ({
+  page,
+}) => {
+  await page.goto('/links/');
+  await expect(page.getByRole('heading', { level: 1, name: 'Official links' })).toBeVisible();
+  await expect(page.locator('.hero__description')).toHaveCount(0);
+  await expect(page.locator('.hero__message')).toHaveCount(0);
+  await expect(page.getByText(/Explore a hand-built world/i)).toHaveCount(0);
+  await expect(page.locator('img[src*="atmosphere"]')).toHaveCount(0);
+});
+
+test('studio and homepage teasers do not repeat destination-page body copy', async ({ page }) => {
+  await page.goto('/studio/');
+  await expect(
+    page.getByText('BlightFall is an independent game studio and development team.', {
+      exact: false,
+    }),
+  ).toHaveCount(0);
+  await expect(page.getByText(/upcoming dark-fantasy Roblox RPG/i)).toHaveCount(0);
+
+  await page.goto('/');
+  await expect(
+    page.getByText(
+      'Current game announcements are published through the official BlightFall Discord.',
+    ),
+  ).toHaveCount(0);
+});
+
 test('studio navigation exposes the public site structure', async ({ page }) => {
   await page.goto('/');
   const navigation = page.getByRole('navigation', { name: 'Primary navigation' });
@@ -105,6 +133,51 @@ for (const [path, selector] of brandImages) {
     expect(Math.abs(dimensions.naturalRatio - dimensions.renderedRatio)).toBeLessThan(0.02);
   });
 }
+
+const atmosphereImages = [
+  ['/', '.flagship-visual__backdrop', 'eager'],
+  ['/projects/', '.project-listing__backdrop', 'lazy'],
+  ['/projects/blightfall/', '.game-hero__backdrop', 'eager'],
+] as const;
+
+for (const [path, selector, loading] of atmosphereImages) {
+  test(`${path} uses the responsive game atmosphere artwork`, async ({ page }) => {
+    await page.goto(path);
+    const picture = page.locator(selector);
+    const image = picture.locator('img');
+    const expectedAsset =
+      (page.viewportSize()?.width ?? 0) <= 736
+        ? 'game-atmosphere-mobile-1024x1536.webp'
+        : 'game-atmosphere-desktop-1600x900.webp';
+
+    await expect(picture.locator('source')).toHaveAttribute(
+      'srcset',
+      '/assets/site/game-atmosphere-mobile-1024x1536.webp',
+    );
+    await expect(image).toHaveAttribute('loading', loading);
+    await expect
+      .poll(() => image.evaluate((element: HTMLImageElement) => element.currentSrc))
+      .toContain(expectedAsset);
+  });
+}
+
+test('the studio header uses only the approved studio atmosphere artwork', async ({ page }) => {
+  await page.goto('/studio/');
+  const hero = page.locator('.editorial-hero--atmosphere');
+  await expect(hero.locator('.editorial-hero__backdrop')).toHaveAttribute(
+    'src',
+    '/assets/site/studio-atmosphere-1600x900.webp',
+  );
+  await expect(hero.locator('img[src*="game-atmosphere"]')).toHaveCount(0);
+});
+
+test('arcane dividers remain decorative and selective', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('.arcane-divider')).toHaveCount(1);
+  await expect(page.locator('.arcane-divider img')).toHaveAttribute('alt', '');
+  await page.goto('/projects/blightfall/');
+  await expect(page.locator('.arcane-divider')).toHaveCount(1);
+});
 
 test('contact publishes only the approved categorized inboxes', async ({ page }) => {
   await page.goto('/contact/');

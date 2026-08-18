@@ -288,11 +288,17 @@ p {
   z-index: -3;
   width: 100%;
   height: 100%;
+}
+
+.flagship-visual__backdrop img,
+.game-hero__backdrop img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   transition: transform 500ms ease;
 }
 
-.flagship-visual:hover .flagship-visual__backdrop {
+.flagship-visual:hover .flagship-visual__backdrop img {
   transform: scale(1.025);
 }
 
@@ -335,6 +341,28 @@ p {
 .section-block {
   padding-block: clamp(4rem, 9vw, 8rem);
   border-top: 1px solid var(--line);
+}
+
+.arcane-divider {
+  position: relative;
+  height: clamp(4rem, 7vw, 6rem);
+  overflow: hidden;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.arcane-divider img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  transform: translate(-50%, -50%);
+}
+
+.arcane-divider + .section-block {
+  border-top: 0;
 }
 
 .studio-intro,
@@ -503,11 +531,48 @@ p {
   max-width: 13ch;
 }
 
-.editorial-hero > p:last-child {
+.editorial-hero > p:last-child:not(.eyebrow) {
   max-width: 45rem;
   margin: 1.75rem 0 0;
   color: var(--ivory-muted);
   font-size: clamp(1.05rem, 1.7vw, 1.24rem);
+}
+
+.editorial-hero--atmosphere {
+  position: relative;
+  min-height: clamp(29rem, 52vw, 41rem);
+  overflow: hidden;
+  padding: clamp(2rem, 6vw, 5rem);
+  border: 1px solid var(--line);
+  isolation: isolate;
+}
+
+.editorial-hero--atmosphere > .eyebrow,
+.editorial-hero--atmosphere > h1,
+.editorial-hero--atmosphere > p:last-child:not(.eyebrow) {
+  position: relative;
+  z-index: 2;
+}
+
+.editorial-hero__backdrop,
+.editorial-hero__shade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.editorial-hero__backdrop {
+  z-index: -2;
+  object-fit: cover;
+  object-position: center;
+}
+
+.editorial-hero__shade {
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgb(7 6 9 / 94%) 0%, rgb(7 6 9 / 75%) 43%, rgb(7 6 9 / 28%) 78%),
+    linear-gradient(to top, rgb(7 6 9 / 86%), transparent 70%);
 }
 
 .editorial-grid {
@@ -516,6 +581,10 @@ p {
 
 .editorial-grid--bordered {
   border-top: 1px solid var(--line);
+}
+
+.editorial-grid--compact {
+  padding-block: clamp(3rem, 6vw, 5rem);
 }
 
 .projects-page .editorial-hero {
@@ -548,14 +617,21 @@ p {
   content: '';
 }
 
-.project-listing__visual img {
+.project-listing__backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.project-listing__backdrop img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 500ms ease;
 }
 
-.project-listing:hover .project-listing__visual img {
+.project-listing:hover .project-listing__backdrop img {
   transform: scale(1.025);
 }
 
@@ -1305,6 +1381,19 @@ p {
   .game-hero {
     min-height: 34rem;
     padding: 1.5rem;
+  }
+
+  .editorial-hero--atmosphere {
+    min-height: 32rem;
+    padding: 1.5rem;
+  }
+
+  .editorial-hero__backdrop {
+    object-position: 58% center;
+  }
+
+  .arcane-divider img {
+    width: 190%;
   }
 
   .game-status {

@@ -1,0 +1,27 @@
+---
+interface Props {
+  class?: string;
+  loading?: 'eager' | 'lazy';
+  fetchpriority?: 'high' | 'low' | 'auto';
+}
+
+const { class: className, loading = 'lazy', fetchpriority = 'auto' } = Astro.props;
+---
+
+<picture class={className}>
+  <source
+    media="(max-width: 46rem)"
+    srcset="/assets/site/game-atmosphere-mobile-1024x1536.webp"
+    width="1024"
+    height="1536"
+  />
+  <img
+    src="/assets/site/game-atmosphere-desktop-1600x900.webp"
+    width="1600"
+    height="900"
+    alt=""
+    loading={loading}
+    decoding="async"
+    fetchpriority={fetchpriority}
+  />
+</picture>

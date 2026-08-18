@@ -1,4 +1,6 @@
 ---
+import ArcaneDivider from '../components/ArcaneDivider.astro';
+import GameAtmosphere from '../components/GameAtmosphere.astro';
 import LinkButton from '../components/LinkButton.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getPrimaryLink } from '../config/site';
@@ -34,13 +36,7 @@ const primaryLink = getPrimaryLink();
         href="/projects/blightfall/"
         aria-label="Explore BlightFall, our flagship project"
       >
-        <img
-          class="flagship-visual__backdrop"
-          src="/assets/blightfall-backdrop.webp"
-          width="1600"
-          height="900"
-          alt=""
-        />
+        <GameAtmosphere class="flagship-visual__backdrop" loading="eager" fetchpriority="high" />
         <div class="flagship-visual__shade"></div>
         <div class="flagship-visual__topline">
           <span>Flagship project</span>
@@ -97,13 +93,14 @@ const primaryLink = getPrimaryLink();
       </div>
     </section>
 
+    <ArcaneDivider />
+
     <section class="dispatch-section section-block" aria-labelledby="dispatch-heading">
       <div>
         <p class="eyebrow">Development</p>
         <h2 id="dispatch-heading">Follow the work as it takes shape.</h2>
       </div>
       <div class="dispatch-section__actions">
-        <p>Current game announcements are published through the official BlightFall Discord.</p>
         <a class="inline-link" href="/news/">
           Discord announcements <span aria-hidden="true">→</span>
         </a>

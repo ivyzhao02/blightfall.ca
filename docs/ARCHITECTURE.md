@@ -32,8 +32,9 @@ also require a non-null date.
 **Status:** accepted
 
 The site uses current approved BlightFall exports. Web copies are isolated in `public/`; the original
-production library is not imported. No unrelated fantasy symbols, generated artwork, or unapproved
-fonts are included.
+production library is not imported. Responsive game atmosphere artwork uses native `<picture>`
+art direction, while studio atmosphere artwork remains studio-scoped and decorative dividers are
+used sparingly. No unrelated fantasy symbols, generated artwork, or unapproved fonts are included.
 
 ## ADR-005: Analytics disabled by default
 
@@ -91,8 +92,9 @@ approved. The form must not request unnecessary personal information.
 
 The homepage uses a wide editorial composition with global navigation, a flagship-project feature,
 and studio-level sections. `/links/` remains a compact, durable social-bio destination backed by the
-same central configuration. This prevents the public website from reading as a single profile card
-while keeping the link route fast and easy to maintain.
+same central configuration. It deliberately omits game and studio body copy already published on
+dedicated routes. This prevents the public website from reading as a single profile card while
+keeping the link route fast and easy to maintain.
 
 Public navigation exposes only useful routes with approved copy. Team data remains modeled but a
 team route is deferred until approved profiles exist, avoiding an empty or speculative public page.

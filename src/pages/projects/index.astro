@@ -1,4 +1,5 @@
 ---
+import GameAtmosphere from '../../components/GameAtmosphere.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { projects } from '../../content/projects';
 
@@ -22,7 +23,7 @@ const publicProjects = projects.filter((project) => project.publicPageEnabled);
         publicProjects.map((project, index) => (
           <a class="project-listing" href={`/projects/${project.slug}/`}>
             <div class="project-listing__visual">
-              <img src="/assets/blightfall-backdrop.webp" width="1600" height="900" alt="" />
+              <GameAtmosphere class="project-listing__backdrop" loading="lazy" />
               <span>{String(index + 1).padStart(2, '0')}</span>
             </div>
             <div class="project-listing__content">

@@ -42,6 +42,9 @@ try {
     const page = await browser.newPage({ viewport });
     for (const route of [
       { name: 'home', path: '/' },
+      { name: 'projects', path: '/projects/' },
+      { name: 'blightfall', path: '/projects/blightfall/' },
+      { name: 'studio', path: '/studio/' },
       { name: 'links', path: '/links/?utm_source=instagram' },
     ]) {
       await page.goto(`${baseURL}${route.path}`, { waitUntil: 'networkidle' });
@@ -53,7 +56,7 @@ try {
     await page.close();
   }
   await browser.close();
-  console.info('Captured desktop and mobile screenshots for / and /links/.');
+  console.info('Captured desktop and mobile screenshots for the primary public layouts.');
 } finally {
   server?.kill();
 }
